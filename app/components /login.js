@@ -8,49 +8,38 @@ import {
   View,
   Text,
   Button,
-  StatusBar,
 } from 'react-native';
 
-import { Header, Colors } from 'react-native/Libraries/NewAppScreen';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-class Home extends Component {
-  state = { text: 'h' };
-
-  buttonClick = () => {
-    this.props.sendMessage('sucess');
-  };
+class Login extends Component {
 
   render() {
     return (
-      <>
-        <StatusBar barStyle="dark-content" />
-        <SafeAreaView>
-          <ScrollView
-            contentContainerStyle={{ justifyContent: 'center', height: '100%' }}
-            contentInsetAdjustmentBehavior="automatic"
-            style={styles.scrollView}>
+      <SafeAreaView style={{ flex: 1 }}>
+        <ScrollView
+          bounces={false}
+          contentContainerStyle={{ justifyContent: 'center', height: '100%' }}
+          contentInsetAdjustmentBehavior="automatic"
+          style={styles.scrollView}>
+          <View style={styles.body}>
+            <Text style={styles.sectionTitle}>Login Screen</Text>
+            <Button
+              style={styles.submit}
+              onPress={() => this.props.navigation.navigate('Home')}
+              title="Login"
+            />
+          </View>
+        </ScrollView>
+      </SafeAreaView>
 
-            <View style={styles.body}>
-
-              <Text style={styles.sectionTitle}>Home Screen</Text>
-
-              <Button
-                style={styles.submit}
-                onPress={() => this.buttonClick()}
-                title="Click Me"
-              />
-
-              <Text style={styles.sectionTitle}>{this.props.message}</Text>
-            </View>
-          </ScrollView>
-        </SafeAreaView>
-      </>
     );
   }
 }
 
 const styles = StyleSheet.create({
   scrollView: {
+
     backgroundColor: Colors.lighter,
   },
 
@@ -108,5 +97,5 @@ const actionCreators = {
 export default connect(
   mapState,
   actionCreators,
-)(Home);
+)(Login);
 //export default Home;
