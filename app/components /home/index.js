@@ -11,7 +11,7 @@ import {
   StatusBar,
 } from 'react-native';
 
-import { Header, Colors } from 'react-native/Libraries/NewAppScreen';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 class Home extends Component {
   state = { text: 'h' };

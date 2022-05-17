@@ -26,7 +26,8 @@ class Login extends Component {
             <Text style={styles.sectionTitle}>Login Screen</Text>
             <Button
               style={styles.submit}
-              onPress={() => this.props.navigation.navigate('Home')}
+              // onPress={() => this.props.navigation.navigate('Home')}
+              onPress={() => this.props.navigation.navigate('Sample')}
               title="Login"
             />
           </View>
@@ -37,9 +38,11 @@ class Login extends Component {
   }
 }
 
+
+
+
 const styles = StyleSheet.create({
   scrollView: {
-
     backgroundColor: Colors.lighter,
   },
 
