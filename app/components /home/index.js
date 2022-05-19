@@ -12,6 +12,9 @@ import {
 } from 'react-native';
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import CardView from './card'
+import { UserIcon, UpdateIcon, LogoutIcon, AppLogo } from '@utils/icons'
+
 
 class Home extends Component {
   state = { text: 'h' };
@@ -19,6 +22,8 @@ class Home extends Component {
   buttonClick = () => {
     this.props.sendMessage('sucess');
   };
+
+
 
   render() {
     return (
@@ -32,15 +37,29 @@ class Home extends Component {
 
             <View style={styles.body}>
 
-              <Text style={styles.sectionTitle}>Home Screen</Text>
+              <CardView
+                title="New Application"
+                subTitle="Fill Out Details here"
+                color={"#206A88"}
+                onPress={() => alert("New Application")}
+                icon={<UserIcon style={{ marginLeft: 0 }} width="85" height="85" />}
+                backgroundColor={"#206A88"} />
+              <CardView
+                title="Latest Updates"
+                subTitle="Checkout here"
+                color={"#FF5A30"}
+                onPress={() => alert("Latest Updates")}
+                icon={<UpdateIcon style={{ marginLeft: 0 }} width="85" height="85" />}
+                backgroundColor={"#f57d3c"} />
 
-              <Button
-                style={styles.submit}
-                onPress={() => this.buttonClick()}
-                title="Click Me"
-              />
+              <CardView
+                title="Member Section"
+                onPress={() => alert("Member Section")}
+                subTitle="Signin/Join here"
+                color={"#BC59AE"}
+                icon={<LogoutIcon style={{ marginLeft: 0 }} width="85" height="85" />}
+                backgroundColor={"#bdcfe2"} />
 
-              <Text style={styles.sectionTitle}>{this.props.message}</Text>
             </View>
           </ScrollView>
         </SafeAreaView>
@@ -57,7 +76,7 @@ const styles = StyleSheet.create({
   body: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     backgroundColor: Colors.white,
   },
   sectionContainer: {

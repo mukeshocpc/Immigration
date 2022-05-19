@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { SvgCssUri } from 'react-native-svg';
 
 class Login extends Component {
 
@@ -24,10 +25,15 @@ class Login extends Component {
           style={styles.scrollView}>
           <View style={styles.body}>
             <Text style={styles.sectionTitle}>Login Screen</Text>
+            {/* <SvgCssUri
+              width="100%"
+              height="100%"
+              uri="http://thenewcode.com/assets/svg/accessibility.svg"
+            /> */}
             <Button
               style={styles.submit}
-              // onPress={() => this.props.navigation.navigate('Home')}
-              onPress={() => this.props.navigation.navigate('Sample')}
+              onPress={() => this.props.navigation.navigate('Home')}
+              //onPress={() => this.props.navigation.navigate('Sample')}
               title="Login"
             />
           </View>
