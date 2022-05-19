@@ -43,14 +43,16 @@ class Home extends Component {
                 color={"#206A88"}
                 onPress={() => alert("New Application")}
                 icon={<UserIcon style={{ marginLeft: 0 }} width="85" height="85" />}
-                backgroundColor={"#206A88"} />
+                backgroundColor={['#206A88', '#206A88', '#fff']} />
+
               <CardView
                 title="Latest Updates"
                 subTitle="Checkout here"
                 color={"#FF5A30"}
                 onPress={() => alert("Latest Updates")}
                 icon={<UpdateIcon style={{ marginLeft: 0 }} width="85" height="85" />}
-                backgroundColor={"#f57d3c"} />
+
+                backgroundColor={['#f57d3c', '#3b5998', '#192f6a']} />
 
               <CardView
                 title="Recent Notification"
@@ -58,7 +60,7 @@ class Home extends Component {
                 subTitle="Click here"
                 color={"#1f5e95"}
                 icon={<NotifcationIcon style={{ marginLeft: 0 }} width="85" height="85" />}
-                backgroundColor={"#1f5e95"} />
+                backgroundColor={['#1f5e95', '#3b5998', '#192f6a']} />
 
               <CardView
                 title="Member Section"
@@ -66,7 +68,7 @@ class Home extends Component {
                 subTitle="Signin/Join here"
                 color={"#BC59AE"}
                 icon={<LogoutIcon style={{ marginLeft: 0 }} width="85" height="85" />}
-                backgroundColor={"#bdcfe2"} />
+                backgroundColor={['#1f5e95', '#3b5998', '#192f6a']} />
 
             </View>
           </ScrollView>

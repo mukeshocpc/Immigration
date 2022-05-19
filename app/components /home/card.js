@@ -6,15 +6,17 @@ import {
 } from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/dist/AntDesign';
+import LinearGradient from 'react-native-linear-gradient';
+
 
 
 export default CardView = (props) => {
     let { title, subTitle, color, backgroundColor, icon, onPress } = props
     return (
         <View style={styles.main}>
-            <View style={[styles.section1, { backgroundColor }]}>
+            <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={backgroundColor} style={[styles.section1, styles.linearGradient]}>
                 {icon}
-            </View>
+            </LinearGradient>
             <Pressable style={styles.section2} onPress={onPress}>
                 <Text style={styles.section2_txt}>{title}</Text>
                 <View style={styles.section2_sub}>
@@ -27,6 +29,12 @@ export default CardView = (props) => {
 };
 
 const styles = StyleSheet.create({
+    linearGradient: {
+        flex: 1,
+        paddingLeft: 15,
+        paddingRight: 15,
+        borderRadius: 5
+    },
     main: {
         height: 150,
         flexDirection: 'row',
