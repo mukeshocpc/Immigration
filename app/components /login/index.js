@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, } from 'react';
 import { connect } from 'react-redux';
 import { alertActions, msgActions } from '@actions';
 import {
@@ -6,16 +6,22 @@ import {
   StyleSheet,
   ScrollView,
   View,
-  Text,
-  Button,
 } from 'react-native';
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-import { SvgCssUri } from 'react-native-svg';
+import OTPView from './otp'
+import InputPhone from './phone'
+
 
 class Login extends Component {
 
+  state = {
+    phone: undefined,
+    otp: undefined
+  }
+
   render() {
+    let { phone, otp } = this.state
     return (
       <SafeAreaView style={{ flex: 1 }}>
         <ScrollView
@@ -24,19 +30,14 @@ class Login extends Component {
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
           <View style={styles.body}>
-            <Text style={styles.sectionTitle}>Login Screen</Text>
-            {/* <SvgCssUri
-              width="100%"
-              height="100%"
-              uri="http://thenewcode.com/assets/svg/accessibility.svg"
-            /> */}
-            <Button
-              style={styles.submit}
-              onPress={() => this.props.navigation.navigate('Home')}
-              //onPress={() => this.props.navigation.navigate('Sample')}
-              title="Login"
-            />
+            {!phone && <InputPhone onPress={(phone) => this.setState({ phone })} />}
+            {phone && !otp &&
+              <OTPView
+                onPress={(phone) => this.setState({ phone })}
+                onResendOTP={(phone) => this.setState({ phone })} />
+            }
           </View>
+
         </ScrollView>
       </SafeAreaView>
 
@@ -55,29 +56,39 @@ const styles = StyleSheet.create({
   body: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundColor: Colors.white,
+    alignItems: 'center',
+
+    justifyContent: 'flex-start',
   },
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
   },
   submit: {
-    fontSize: 24,
-    color: Colors.red,
-    backgroundColor: Colors.black,
+    marginTop: 40,
+    borderRadius: 10,
+    // marginHorizontal: 50,
+    paddingHorizontal: 10,
+    paddingVertical: 15,
+    backgroundColor: '#8992A9',
   },
   sectionTitle: {
+    width: '80%',
+    alignSelf: 'center',
     fontSize: 24,
     fontWeight: '600',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
     marginLeft: 20,
     textAlign: 'center',
+    marginVertical: 10,
     color: Colors.black,
   },
   sectionDescription: {
     marginTop: 8,
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: '400',
+    alignSelf: 'center',
     color: Colors.dark,
   },
   highlight: {
@@ -91,6 +102,9 @@ const styles = StyleSheet.create({
     paddingRight: 12,
     textAlign: 'right',
   },
+
+
+
 });
 
 function mapState(state) {

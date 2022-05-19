@@ -18,8 +18,8 @@ export default class Navigation extends Component {
     return (
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Sample" component={Sample} />
         </Stack.Navigator>
       </NavigationContainer>
