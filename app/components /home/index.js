@@ -13,9 +13,8 @@ import {
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import CardView from './card'
-import { UserIcon, UpdateIcon, LogoutIcon, AppLogo } from '@utils/icons'
+import { UserIcon, UpdateIcon, LogoutIcon, AppLogo, NotifcationIcon } from '@utils/icons'
 
-import Icon from 'react-native-vector-icons/dist/AntDesign';
 
 
 class Home extends Component {
@@ -40,7 +39,7 @@ class Home extends Component {
             <View style={styles.body}>
               <CardView
                 title="New Application"
-                subTitle="Fill Out Details here"
+                subTitle="Fill out details here"
                 color={"#206A88"}
                 onPress={() => alert("New Application")}
                 icon={<UserIcon style={{ marginLeft: 0 }} width="85" height="85" />}
@@ -52,6 +51,15 @@ class Home extends Component {
                 onPress={() => alert("Latest Updates")}
                 icon={<UpdateIcon style={{ marginLeft: 0 }} width="85" height="85" />}
                 backgroundColor={"#f57d3c"} />
+
+              <CardView
+                title="Recent Notification"
+                onPress={() => this.props.navigation.navigate('Login')}
+                subTitle="Click here"
+                color={"#1f5e95"}
+                icon={<NotifcationIcon style={{ marginLeft: 0 }} width="85" height="85" />}
+                backgroundColor={"#1f5e95"} />
+
               <CardView
                 title="Member Section"
                 onPress={() => this.props.navigation.navigate('Login')}

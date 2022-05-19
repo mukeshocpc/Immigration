@@ -12,7 +12,6 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 import OTPView from './otp'
 import InputPhone from './phone'
 
-
 class Login extends Component {
 
   state = {
