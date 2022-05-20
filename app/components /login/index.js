@@ -11,16 +11,18 @@ import {
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import OTPView from './otp'
 import InputPhone from './phone'
+import UserInfo from './userInfo'
 
 class Login extends Component {
 
   state = {
     phone: undefined,
-    otp: undefined
+    otp: undefined,
+    user: undefined
   }
 
   render() {
-    let { phone, otp } = this.state
+    let { phone, otp, user } = this.state
     return (
       <SafeAreaView style={{ flex: 1 }}>
         <ScrollView
@@ -32,9 +34,11 @@ class Login extends Component {
             {!phone && <InputPhone onPress={(phone) => this.setState({ phone })} />}
             {phone && !otp &&
               <OTPView
-                onPress={(phone) => this.setState({ phone })}
-                onResendOTP={(phone) => this.setState({ phone })} />
+                onPress={(otp) => this.setState({ otp })}
+                onResendOTP={(otp) => this.setState({ otp })} />
             }
+            {phone && otp && !user && <UserInfo onPress={(user) => this.setState({ user })} />}
+
           </View>
 
         </ScrollView>
