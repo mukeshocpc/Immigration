@@ -57,6 +57,7 @@ class Home extends Component {
                 backgroundColor={['#f57d3c', '#3b5998', '#192f6a']} />
 
               <CardView
+                notification={10}
                 title="Recent Notification"
                 onPress={() => this.props.navigation.navigate('Login')}
                 subTitle="Click here"

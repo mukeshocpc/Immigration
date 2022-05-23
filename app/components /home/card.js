@@ -2,7 +2,8 @@ import {
     StyleSheet,
     View,
     Text,
-    Pressable
+    Pressable,
+    Platform
 } from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/dist/AntDesign';
@@ -11,9 +12,9 @@ import LinearGradient from 'react-native-linear-gradient';
 
 
 export default CardView = (props) => {
-    let { title, subTitle, color, backgroundColor, icon, onPress } = props
+    let { title, subTitle, color, backgroundColor, icon, onPress, notification } = props
     return (
-        <View style={styles.main}>
+        <View style={[styles.main, { padding: 10 }]}>
             <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={backgroundColor} style={[styles.linearGradient, styles.section1]}>
                 {icon}
             </LinearGradient>
@@ -25,6 +26,11 @@ export default CardView = (props) => {
                 </View>
 
             </Pressable>
+            {notification && notification > 0 && <View style={styles.notificationView}>
+                <Text style={{ color: 'white', fontWeight: Platform.OS == 'android' ? 'bold' : '600' }}>
+                    {notification}
+                </Text>
+            </View>}
         </View>)
 };
 
@@ -36,6 +42,8 @@ const styles = StyleSheet.create({
         borderRadius: 5
     },
     main: {
+        padding: 10,
+        backgroundColor: 'white',
         height: 150,
         flexDirection: 'row',
         position: 'relative',
@@ -82,12 +90,23 @@ const styles = StyleSheet.create({
         textAlign: 'left',
     },
     section2_txt: {
-        fontSize: 25,
-        fontWeight: '600',
+        fontSize: 23,
+        fontWeight: Platform.OS == 'android' ? 'bold' : '600',
+        color: "#000",
         marginLeft: 5,
         textAlign: 'left',
     }
-},
+    , notificationView: {
+        backgroundColor: 'red',
+        position: 'absolute',
+        width: 35,
+        height: 35,
+        borderRadius: 35 / 2,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
+}
 
 
 );
