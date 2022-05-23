@@ -53,7 +53,7 @@ class Home extends Component {
                 title="Latest Updates"
                 subTitle="Checkout here"
                 color={'#FF5A30'}
-                onPress={() => alert('Latest Updates')}
+                onPress={() => this.props.navigation.navigate('Updates')}
                 icon={
                   <UpdateIcon style={{marginLeft: 0}} width="85" height="85" />
                 }
@@ -63,7 +63,7 @@ class Home extends Component {
               <CardView
                 notification={10}
                 title="Recent Notification"
-                onPress={() => this.props.navigation.navigate('Login')}
+                onPress={() => this.props.navigation.navigate('Notification')}
                 subTitle="Click here"
                 color={'#1f5e95'}
                 icon={
