@@ -14,7 +14,7 @@ export default CardView = (props) => {
     let { title, subTitle, color, backgroundColor, icon, onPress } = props
     return (
         <View style={styles.main}>
-            <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={backgroundColor} style={[styles.section1, styles.linearGradient]}>
+            <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={backgroundColor} style={[styles.linearGradient, styles.section1]}>
                 {icon}
             </LinearGradient>
             <Pressable style={styles.section2} onPress={onPress}>
@@ -30,7 +30,7 @@ export default CardView = (props) => {
 
 const styles = StyleSheet.create({
     linearGradient: {
-        flex: 1,
+        // flex: 1,
         paddingLeft: 15,
         paddingRight: 15,
         borderRadius: 5
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     },
     section1: {
         backgroundColor: '#25708C',
-        width: '70%',
+        width: '90%',
         height: "100%",
         borderBottomLeftRadius: 10,
         borderTopStartRadius: 10,
