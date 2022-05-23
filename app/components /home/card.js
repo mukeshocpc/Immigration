@@ -65,18 +65,19 @@ const styles = StyleSheet.create({
     section2: {
         backgroundColor: 'white',
         width: '60%',
-        height: 120,
+        height: 110,
         position: 'absolute',
         justifyContent: 'space-around',
         right: 0,
-        marginVertical: 10,
-        //  alignSelf: 'center',
+
+        alignSelf: 'center',
         borderRadius: 10,
         borderColor: '#DEDEDE',
         borderWidth: 1.5,
         padding: 10
     },
     section2_sub: {
+
         justifyContent: 'space-around',
         flexDirection: 'row',
         alignItems: 'center'
