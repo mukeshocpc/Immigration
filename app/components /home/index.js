@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { alertActions, msgActions } from '@actions';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {alertActions, msgActions} from '@actions';
 import {
   SafeAreaView,
   StyleSheet,
@@ -11,68 +11,81 @@ import {
   StatusBar,
 } from 'react-native';
 
-import { Colors } from 'react-native/Libraries/NewAppScreen';
-import CardView from './card'
-import { UserIcon, UpdateIcon, LogoutIcon, AppLogo, NotifcationIcon } from '@utils/icons'
-
-
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import CardView from './card';
+import {
+  UserIcon,
+  UpdateIcon,
+  LogoutIcon,
+  AppLogo,
+  NotifcationIcon,
+} from '@utils/icons';
 
 class Home extends Component {
-  state = { text: 'h' };
-
-
+  state = {text: 'h'};
 
   buttonClick = () => {
     this.props.sendMessage('sucess');
   };
 
-
-
   render() {
     return (
       <>
         <StatusBar barStyle="dark-content" />
-        <SafeAreaView style={{ backgroundColor: 'white', flex: 1 }}>
+        <SafeAreaView style={{backgroundColor: 'white', flex: 1}}>
           <ScrollView
-            contentContainerStyle={{ justifyContent: 'center' }}
+            contentContainerStyle={{justifyContent: 'center'}}
             contentInsetAdjustmentBehavior="automatic"
             style={styles.scrollView}>
-
             <View style={styles.body}>
               <CardView
                 title="New Application"
                 subTitle="Fill out details here"
-                color={"#206A88"}
-                onPress={() => alert("New Application")}
-                icon={<UserIcon style={{ marginLeft: 0 }} width="85" height="85" />}
-                backgroundColor={['#206A88', '#206A88', '#fff']} />
+                color={'#206A88'}
+                onPress={() => this.props.navigation.navigate('NewApplication')}
+                icon={
+                  <UserIcon style={{marginLeft: 0}} width="85" height="85" />
+                }
+                backgroundColor={['#206A88', '#206A88', '#fff']}
+              />
 
               <CardView
                 title="Latest Updates"
                 subTitle="Checkout here"
-                color={"#FF5A30"}
-                onPress={() => alert("Latest Updates")}
-                icon={<UpdateIcon style={{ marginLeft: 0 }} width="85" height="85" />}
-
-                backgroundColor={['#f57d3c', '#3b5998', '#192f6a']} />
+                color={'#FF5A30'}
+                onPress={() => alert('Latest Updates')}
+                icon={
+                  <UpdateIcon style={{marginLeft: 0}} width="85" height="85" />
+                }
+                backgroundColor={['#f57d3c', '#3b5998', '#192f6a']}
+              />
 
               <CardView
                 notification={10}
                 title="Recent Notification"
                 onPress={() => this.props.navigation.navigate('Login')}
                 subTitle="Click here"
-                color={"#1f5e95"}
-                icon={<NotifcationIcon style={{ marginLeft: 0 }} width="85" height="85" />}
-                backgroundColor={['#1f5e95', '#3b5998', '#192f6a']} />
+                color={'#1f5e95'}
+                icon={
+                  <NotifcationIcon
+                    style={{marginLeft: 0}}
+                    width="85"
+                    height="85"
+                  />
+                }
+                backgroundColor={['#1f5e95', '#3b5998', '#192f6a']}
+              />
 
               <CardView
                 title="Member Section"
                 onPress={() => this.props.navigation.navigate('Login')}
                 subTitle="Signin/Join here"
-                color={"#BC59AE"}
-                icon={<LogoutIcon style={{ marginLeft: 0 }} width="85" height="85" />}
-                backgroundColor={['#1f5e95', '#3b5998', '#192f6a']} />
-
+                color={'#BC59AE'}
+                icon={
+                  <LogoutIcon style={{marginLeft: 0}} width="85" height="85" />
+                }
+                backgroundColor={['#1f5e95', '#3b5998', '#192f6a']}
+              />
             </View>
           </ScrollView>
         </SafeAreaView>
@@ -83,7 +96,6 @@ class Home extends Component {
 
 const styles = StyleSheet.create({
   scrollView: {
-
     backgroundColor: Colors.white,
   },
 
@@ -92,7 +104,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     backgroundColor: Colors.white,
-    marginBottom: 50
+    marginBottom: 50,
   },
   sectionContainer: {
     marginTop: 32,
@@ -130,8 +142,8 @@ const styles = StyleSheet.create({
 });
 
 function mapState(state) {
-  const { message } = state;
-  return { message: message.message };
+  const {message} = state;
+  return {message: message.message};
 }
 const actionCreators = {
   success: alertActions.success,
@@ -139,8 +151,5 @@ const actionCreators = {
   clear: alertActions.clear,
   sendMessage: msgActions.sendMessage,
 };
-export default connect(
-  mapState,
-  actionCreators,
-)(Home);
+export default connect(mapState, actionCreators)(Home);
 //export default Home;
