@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
         textAlign: 'left',
     },
     section2_txt: {
-        fontSize: 23,
+        fontSize: 22,
         fontWeight: Platform.OS == 'android' ? 'bold' : '600',
         color: "#000",
         marginLeft: 5,
