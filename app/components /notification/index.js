@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native'
 
-export default Sample = () => {
+export default Notification = () => {
     return (
         <View style={styles.body}>
             <Text>Hello Sample Functional Component</Text>
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     body: {
         flex: 1,
         flexDirection: 'column',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         backgroundColor: "#FFF",
     }
 });
