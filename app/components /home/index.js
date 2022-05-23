@@ -20,11 +20,7 @@ import { UserIcon, UpdateIcon, LogoutIcon, AppLogo, NotifcationIcon } from '@uti
 class Home extends Component {
   state = { text: 'h' };
 
-  static navigationOptions = {
-    headerTitleStyle: { alignSelf: 'center' },
-    title: 'Center Title',
-    headerRight: (<View />)
-  }
+
 
   buttonClick = () => {
     this.props.sendMessage('sucess');
@@ -36,9 +32,9 @@ class Home extends Component {
     return (
       <>
         <StatusBar barStyle="dark-content" />
-        <SafeAreaView>
+        <SafeAreaView style={{ backgroundColor: 'white', flex: 1 }}>
           <ScrollView
-            contentContainerStyle={{ justifyContent: 'center', marginBottom: 100 }}
+            contentContainerStyle={{ justifyContent: 'center' }}
             contentInsetAdjustmentBehavior="automatic"
             style={styles.scrollView}>
 
@@ -86,7 +82,8 @@ class Home extends Component {
 
 const styles = StyleSheet.create({
   scrollView: {
-    backgroundColor: Colors.lighter,
+
+    backgroundColor: Colors.white,
   },
 
   body: {
