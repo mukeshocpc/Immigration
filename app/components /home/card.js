@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         justifyContent: 'space-around',
         right: 0,
-
         alignSelf: 'center',
         borderRadius: 10,
         borderColor: '#DEDEDE',
