@@ -69,10 +69,13 @@ const styles = StyleSheet.create({
         padding: 10
     },
     section2_sub: {
-        justifyContent: 'space-around', flexDirection: 'row', alignItems: 'center'
+        justifyContent: 'space-around',
+        flexDirection: 'row',
+        alignItems: 'center'
     },
     section2_sub_text: {
         // marginVertical: 10,
+        flexBasis: "70%",
         fontSize: 16,
         fontWeight: '300',
         //  marginLeft: 10,

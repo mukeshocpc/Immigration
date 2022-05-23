@@ -9,6 +9,7 @@ import Sample from '@screen/sample';
 
 const Stack = createNativeStackNavigator();
 
+
 export default class Navigation extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +18,7 @@ export default class Navigation extends Component {
   render() {
     return (
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={{ headerTitleAlign: 'center' }}>
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Sample" component={Sample} />
