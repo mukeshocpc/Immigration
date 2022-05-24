@@ -27,6 +27,7 @@ export default class clsLegendRadio extends React.Component {
                 buttonSize={10}
                 buttonStyle={{}}
                 onPress={value => {
+                  this.props.onSelected(value);
                   this.selected = i;
                   this.setState({value: value});
                 }}
@@ -36,6 +37,7 @@ export default class clsLegendRadio extends React.Component {
                 obj={obj}
                 index={i}
                 onPress={value => {
+                  this.props.onSelected(value);
                   this.selected = i;
                   this.setState({value: value});
                 }}
@@ -62,7 +64,6 @@ const style = {
     borderWidth: 2,
     borderColor: '#F1F3F6',
     padding: 15,
-    height: 85,
     fontSize: 15,
   },
 };

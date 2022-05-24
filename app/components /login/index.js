@@ -1,55 +1,46 @@
-import React, { Component, } from 'react';
-import { connect } from 'react-redux';
-import { alertActions, msgActions } from '@actions';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-} from 'react-native';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {alertActions, msgActions} from '@actions';
+import {SafeAreaView, StyleSheet, ScrollView, View} from 'react-native';
 
-import { Colors } from 'react-native/Libraries/NewAppScreen';
-import OTPView from './otp'
-import InputPhone from './phone'
-import UserInfo from './userInfo'
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import OTPView from './otp';
+import InputPhone from './phone';
+import UserInfo from './userInfo';
 
 class Login extends Component {
-
   state = {
     phone: undefined,
     otp: undefined,
-    user: undefined
-  }
+    user: undefined,
+  };
 
   render() {
-    let { phone, otp, user } = this.state
+    let {phone, otp, user} = this.state;
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{flex: 1}}>
         <ScrollView
           bounces={false}
-          contentContainerStyle={{ justifyContent: 'center', height: '100%' }}
+          contentContainerStyle={{justifyContent: 'center', height: '100%'}}
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
           <View style={styles.body}>
-            {!phone && <InputPhone onPress={(phone) => this.setState({ phone })} />}
-            {phone && !otp &&
+            {!phone && <InputPhone onPress={phone => this.setState({phone})} />}
+            {phone && !otp && (
               <OTPView
-                onPress={(otp) => this.setState({ otp })}
-                onResendOTP={(otp) => this.setState({ otp })} />
-            }
-            {phone && otp && !user && <UserInfo onPress={(user) => this.setState({ user })} />}
-
+                onPress={otp => this.setState({otp})}
+                onResendOTP={otp => this.setState({otp})}
+              />
+            )}
+            {phone && otp && !user && (
+              <UserInfo onPress={user => this.setState({user})} />
+            )}
           </View>
-
         </ScrollView>
       </SafeAreaView>
-
     );
   }
 }
-
-
-
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -105,14 +96,11 @@ const styles = StyleSheet.create({
     paddingRight: 12,
     textAlign: 'right',
   },
-
-
-
 });
 
 function mapState(state) {
-  const { message } = state;
-  return { message: message.message };
+  const {message} = state;
+  return {message: message.message};
 }
 const actionCreators = {
   success: alertActions.success,
@@ -120,8 +108,5 @@ const actionCreators = {
   clear: alertActions.clear,
   sendMessage: msgActions.sendMessage,
 };
-export default connect(
-  mapState,
-  actionCreators,
-)(Login);
+export default connect(mapState, actionCreators)(Login);
 //export default Home;

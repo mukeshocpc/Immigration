@@ -2,16 +2,14 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Dropdown} from 'react-native-element-dropdown';
 
-const DropdownComponent = props => {
-  const [value, setValue] = useState(null);
+const DropdownComponent = ({label, data, search, callback}) => {
+  const [value, setValue] = useState('');
   const [isFocus, setIsFocus] = useState(false);
 
   const renderLabel = () => {
     if (value || isFocus) {
       return (
-        <Text style={[styles.label, isFocus && {color: 'blue'}]}>
-          {props.label}
-        </Text>
+        <Text style={[styles.label, isFocus && {color: 'gray'}]}>{label}</Text>
       );
     }
     return null;
@@ -21,22 +19,24 @@ const DropdownComponent = props => {
     <View style={styles.container}>
       {renderLabel()}
       <Dropdown
-        style={[styles.dropdown, isFocus && {borderColor: 'blue'}]}
+        style={[styles.dropdown, isFocus && {borderColor: 'black'}]}
         placeholderStyle={styles.placeholderStyle}
         selectedTextStyle={styles.selectedTextStyle}
         inputSearchStyle={styles.inputSearchStyle}
         iconStyle={styles.iconStyle}
-        data={props.data}
+        data={data}
         maxHeight={300}
         labelField="label"
         valueField="value"
-        placeholder={props.label}
+        placeholder={label}
         value={value}
+        search={search}
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
         onChange={item => {
-          props.onSelected(item.value);
+          // alert(item.value);
           setValue(item.value);
+          callback(item.value);
           setIsFocus(false);
         }}
       />
@@ -49,7 +49,8 @@ export default DropdownComponent;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    padding: 16,
+    paddingHorizontal: 15,
+    paddingTop: 15,
   },
   dropdown: {
     padding: 15,
