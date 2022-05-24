@@ -8,6 +8,8 @@ import OTPView from './otp';
 import InputPhone from './phone';
 import UserInfo from './userInfo';
 
+import { doLogin } from '@services/auth'
+
 class Login extends Component {
   state = {
     phone: undefined,
