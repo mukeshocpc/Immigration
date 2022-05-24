@@ -16,6 +16,8 @@ import Dropdown from './dropdown';
 import renderIf from '../../common/renderIf';
 import countryList from 'react-select-country-list';
 
+import { createApplication } from '@services/auth'
+
 class NewApplication extends Component {
   genderArr = [
     { label: 'Male', value: 0 },
@@ -141,6 +143,15 @@ class NewApplication extends Component {
     });
     return ex[0].label;
   };
+
+
+
+  onCreateApp = async () => {
+    let data = await createApplication({})
+    if (data.status == 200) {
+      alert("Apllication created sucessfully")
+    }
+  }
 
   render() {
     let {
