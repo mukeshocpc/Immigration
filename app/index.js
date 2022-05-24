@@ -6,6 +6,7 @@ import Router from './router';
 import { Provider } from 'react-redux';
 import configureStore from '@lib/configureStore';
 import SplashScreen from 'react-native-splash-screen'
+import NotificationController from './NotificationController'
 let store = configureStore();
 
 export default class Index extends Component {
@@ -18,6 +19,7 @@ export default class Index extends Component {
   render() {
     return (
       <Provider store={store}>
+        <NotificationController />
         <View style={{ flex: 1 }}>
           <Router />
         </View>
