@@ -30,11 +30,15 @@ local.properties
 *.iml
 *.hprof
 
+#ios
+ios/Podfile.lock
+
 # node.js
 #
 node_modules/
 npm-debug.log
 yarn-error.log
+yarn.lock
 
 # BUCK
 buck-out/

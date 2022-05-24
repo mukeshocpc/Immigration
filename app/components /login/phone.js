@@ -10,7 +10,7 @@ import {
 
 
 export default InputPhone = (props) => {
-    const [value, setValue] = useState("");
+    const [value, setValue] = useState(props.defaultValue);
     const [formattedValue, setFormattedValue] = useState("");
     const phoneInput = useRef(null);
 
@@ -22,7 +22,7 @@ export default InputPhone = (props) => {
                 containerStyle={{ borderRadius: 10, borderColor: "#000", marginTop: 20, alignSelf: 'center' }}
                 ref={phoneInput}
                 defaultValue={value}
-                defaultCode="US"
+                defaultCode="IN"
                 layout="first"
                 onChangeText={(text) => {
                     setValue(text);

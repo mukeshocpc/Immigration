@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import OTPInputView from '@twotalltotems/react-native-otp-input'
 import {
     StyleSheet,
@@ -7,9 +7,41 @@ import {
     TouchableOpacity,
 } from 'react-native';
 
-
+let timer = () => { };
 export default OTPView = (props) => {
     const [code, setCode] = useState();
+    const [timeLeft, setTimeLeft] = useState(30);
+
+    const startTimer = () => {
+        timer = setTimeout(() => {
+            if (timeLeft <= 0) {
+                clearTimeout(timer);
+                return false;
+            }
+            setTimeLeft(timeLeft - 1);
+        }, 1000)
+    }
+
+    useEffect(() => {
+        startTimer();
+        return () => clearTimeout(timer);
+    });
+
+    const start = () => {
+        setTimeLeft(30);
+        clearTimeout(timer);
+        startTimer();
+    }
+
+
+    useEffect(() => {
+        startTimer()
+        return () => {
+            clearInterval(timerId);
+        };
+    }, []);
+
+
 
     return (
         <View style={{ alignSelf: 'center', alignSelf: 'center', paddingHorizontal: 20, flex: 1, width: "95%" }}>
@@ -27,7 +59,14 @@ export default OTPView = (props) => {
                     console.log(`Code is ${code}, you are good to go!`)
                 }}
             />
-            <Text style={{ marginTop: 0, fontSize: 14, alignSelf: 'center', color: '#77798D' }}> Didn't get a text ? <Text style={{ fontSize: 16, alignSelf: 'center', color: 'blue' }}>Resend OTP</Text></Text>
+            <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                <Text style={{ marginTop: 0, fontSize: 14, alignSelf: 'center', color: '#77798D' }}> Didn't get a text ?</Text>
+                <TouchableOpacity
+                    disabled={timeLeft != 0}
+                    onPress={start}>
+                    <Text style={{ fontSize: 16, alignSelf: 'center', color: 'blue' }}> {timeLeft == 0 ? "Resend" : `Resend in (${timeLeft})`}</Text>
+                </TouchableOpacity>
+            </View>
             <TouchableOpacity
                 activeOpacity={0.8}
                 style={styles.submit}

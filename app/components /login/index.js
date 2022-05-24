@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {alertActions, msgActions} from '@actions';
-import {SafeAreaView, StyleSheet, ScrollView, View} from 'react-native';
-
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { alertActions, msgActions } from '@actions';
+import { SafeAreaView, StyleSheet, ScrollView, View } from 'react-native';
+import auth from '@react-native-firebase/auth';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 import OTPView from './otp';
 import InputPhone from './phone';
 import UserInfo from './userInfo';
@@ -11,29 +11,54 @@ import UserInfo from './userInfo';
 class Login extends Component {
   state = {
     phone: undefined,
+    code: undefined,
+    confirm: undefined,
     otp: undefined,
     user: undefined,
   };
 
+  signInWithPhoneNumber = async () => {
+    let { phone } = this.state
+    const confirm = await auth().signInWithPhoneNumber(phone);
+    this.setState({ confirm });
+  }
+
+
+  confirmCode = async () => {
+    let { confirm, code } = this.state
+    if (confirm) {
+      try {
+        await confirm.confirm(code);
+      } catch (error) {
+        this.setState({ code: undefined })
+        console.log('Invalid code.');
+      }
+    }
+  }
+
+
   render() {
-    let {phone, otp, user} = this.state;
+    let { phone, otp, user, confirm } = this.state;
     return (
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaView style={{ flex: 1 }}>
         <ScrollView
           bounces={false}
-          contentContainerStyle={{justifyContent: 'center', height: '100%'}}
+          contentContainerStyle={{ justifyContent: 'center', height: '100%' }}
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
           <View style={styles.body}>
-            {!phone && <InputPhone onPress={phone => this.setState({phone})} />}
-            {phone && !otp && (
+            {phone == undefined &&
+              <InputPhone
+                defaultValue={'9886282641'}
+                onPress={phone => this.setState({ phone }, this.signInWithPhoneNumber)} />}
+            {phone != undefined && otp == undefined && (
               <OTPView
-                onPress={otp => this.setState({otp})}
-                onResendOTP={otp => this.setState({otp})}
+                onPress={otp => this.setState({ otp }, this.confirmCode)}
+                onResendOTP={otp => this.setState({ otp }, this.confirmCode)}
               />
             )}
-            {phone && otp && !user && (
-              <UserInfo onPress={user => this.setState({user})} />
+            {user != undefined && (
+              <UserInfo onPress={user => this.setState({ user })} />
             )}
           </View>
         </ScrollView>
@@ -99,8 +124,8 @@ const styles = StyleSheet.create({
 });
 
 function mapState(state) {
-  const {message} = state;
-  return {message: message.message};
+  const { message } = state;
+  return { message: message.message };
 }
 const actionCreators = {
   success: alertActions.success,
