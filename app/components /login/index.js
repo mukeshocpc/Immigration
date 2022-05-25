@@ -56,6 +56,7 @@ class Login extends Component {
       let response = await auth().currentUser.updateProfile({ displayName: "Mukesh Jha" });
       let user = await auth().currentUser
       console.log("response", response, user)
+      this.props.navigation.goBack()
     } catch (error) {
       console.log(error)
     }
