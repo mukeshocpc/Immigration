@@ -11,6 +11,7 @@ import UserInfo from './userInfo';
 
 class Login extends Component {
   state = {
+    state: 0,
     phone: undefined,
     code: undefined,
     confirm: undefined,
@@ -18,20 +19,31 @@ class Login extends Component {
     user: undefined,
   };
 
-  signInWithPhoneNumber = async () => {
-    let { phone } = this.state
-    const confirm = await auth().signInWithPhoneNumber(phone);
-    this.setState({ confirm });
+  signInWithPhoneNumber = async (phone) => {
+    try {
+      const confirm = await auth().signInWithPhoneNumber(phone);
+      console.log("confirm", confirm)
+      this.setState({ phone, confirm });
+    } catch (error) {
+      alert(error)
+    }
+
   }
 
 
-  confirmCode = async () => {
-    let { confirm, code } = this.state
-    if (confirm) {
+  confirmCode = async (code) => {
+
+    let { confirm } = this.state
+
+    if (confirm != undefined) {
       try {
-        await confirm.confirm(code);
+        console.log('confirmCode')
+        let data = await confirm.confirm(code);
+        alert('User Authenticated');
+        this.setState({ user: data.additionalUserInfo })
+        // console.log(data)
+
       } catch (error) {
-        this.setState({ code: undefined })
         console.log('Invalid code.');
       }
     }
@@ -39,7 +51,7 @@ class Login extends Component {
 
 
   render() {
-    let { phone, otp, user, confirm } = this.state;
+    let { phone, user, confirm } = this.state;
     return (
       <SafeAreaView style={{ flex: 1 }}>
         <ScrollView
@@ -50,12 +62,16 @@ class Login extends Component {
           <View style={styles.body}>
             {phone == undefined &&
               <InputPhone
-                defaultValue={'9886282641'}
-                onPress={phone => this.setState({ phone }, this.signInWithPhoneNumber)} />}
-            {phone != undefined && otp == undefined && (
+                onSubmit={(data) => this.setState({ ...data, state: 1 })}
+                defaultValue={'8961422158'}
+                onPress={this.signInWithPhoneNumber} />}
+
+
+
+            {(phone != undefined && user == undefined && confirm != undefined) && (
               <OTPView
-                onPress={otp => this.setState({ otp }, this.confirmCode)}
-                onResendOTP={otp => this.setState({ otp }, this.confirmCode)}
+                onPress={this.confirmCode}
+                onResendOTP={_ => this.signInWithPhoneNumber({ phone })}
               />
             )}
             {user != undefined && (

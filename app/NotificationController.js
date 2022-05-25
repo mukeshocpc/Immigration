@@ -1,4 +1,4 @@
-import React, { useEffect, Component } from "react";
+import React, { Component } from "react";
 import messaging from '@react-native-firebase/messaging';
 import PushNotification, { Importance } from 'react-native-push-notification';
 import { Platform } from "react-native";
@@ -78,7 +78,7 @@ class NotificationController extends Component {
       PushNotification.createChannel(
         {
           channelId: "1212344", // (required)
-          channelName: "Plansmart", // (required)
+          channelName: "Immigartion", // (required)
           channelDescription: "A channel to categorise your notifications", // (optional) default: undefined.
           playSound: false, // (optional) default: true
           soundName: "default", // (optional) See `soundName` parameter of `localNotification` function
