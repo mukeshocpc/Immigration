@@ -63,7 +63,7 @@ class Login extends Component {
             {phone == undefined &&
               <InputPhone
                 onSubmit={(data) => this.setState({ ...data, state: 1 })}
-                defaultValue={'8961422158'}
+                defaultValue={''}
                 onPress={this.signInWithPhoneNumber} />}
 
 
@@ -74,7 +74,7 @@ class Login extends Component {
                 onResendOTP={_ => this.signInWithPhoneNumber({ phone })}
               />
             )}
-            {user != undefined && (
+            {user != undefined && user.displayName == undefined && (
               <UserInfo onPress={user => this.setState({ user })} />
             )}
           </View>
