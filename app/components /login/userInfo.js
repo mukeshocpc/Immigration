@@ -11,9 +11,9 @@ import {
 
 export default UserInfo = (props) => {
     const [value, setValue] = useState("");
-    const [fname, setFirstName] = React.useState("");
-    const [lastname, setLastName] = React.useState("");
-    const [email, setEmail] = React.useState("");
+    const [fname, setFirstName] = React.useState("Mukesh");
+    const [lastname, setLastName] = React.useState("Jha");
+    const [email, setEmail] = React.useState("email");
     const phoneInput = useRef(null);
 
 
@@ -49,13 +49,15 @@ export default UserInfo = (props) => {
                 activeOpacity={0.8}
                 style={styles.submit}
                 onPress={() => {
-                    const checkValid = fname.length > 0 && lastname.length > 0 && email.length > 0;
-                    if (checkValid) {
-                        props.onPress({ fname, lastname, email })
 
-                    } else {
-                        alert("Invalid User Info")
-                    }
+                    props.onPress({ fname, lastname, email })
+                    // const checkValid = fname.length > 0 && lastname.length > 0 && email.length > 0;
+                    // if (checkValid) {
+                    //     props.onPress({ fname, lastname, email })
+
+                    // } else {
+                    //     alert("Invalid User Info")
+                    // }
 
                 }}>
                 <Text style={{ fontSize: 20, alignSelf: 'center', color: '#fff' }}>Complete Signup</Text>

@@ -40,13 +40,26 @@ class Login extends Component {
         console.log('confirmCode')
         let data = await confirm.confirm(code);
         alert('User Authenticated');
-        this.setState({ user: data.additionalUserInfo })
-        // console.log(data)
+        this.setState({ user: data })
+        console.log(data)
 
       } catch (error) {
         console.log('Invalid code.');
       }
     }
+  }
+
+
+  _updateUserData = async (data) => {
+    console.log(data)
+    try {
+      let response = await auth().currentUser.updateProfile({ displayName: "Mukesh Jha" });
+      let user = await auth().currentUser
+      console.log("response", response, user)
+    } catch (error) {
+      console.log(error)
+    }
+
   }
 
 
@@ -75,7 +88,7 @@ class Login extends Component {
               />
             )}
             {user != undefined && user.displayName == undefined && (
-              <UserInfo onPress={user => this.setState({ user })} />
+              <UserInfo onPress={user => this._updateUserData({ displayName: "Mukesh Jha", lastName: "ARRR", ...user })} />
             )}
           </View>
         </ScrollView>
