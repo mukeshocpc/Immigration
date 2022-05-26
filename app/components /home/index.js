@@ -7,7 +7,7 @@ import {
   ScrollView,
   View,
   Text,
-  Button,
+  Alert,
   StatusBar,
 } from 'react-native';
 
@@ -45,6 +45,20 @@ class Home extends Component {
     this.unsubscribe();
   }
 
+
+  _logoutAlert = () => {
+    Alert.alert(
+      'Alert',
+      'Are you sure you want to logout?',
+      [
+        { text: 'Yes', onPress: () => auth().signOut() },
+        { text: 'No', onPress: () => console.log('No button clicked'), style: 'cancel' },
+      ],
+      {
+        cancelable: true
+      }
+    );
+  }
 
 
   buttonClick = () => {
@@ -104,7 +118,7 @@ class Home extends Component {
                 title="Member Section"
                 onPress={() => {
                   if (user) {
-                    auth().signOut()
+                    this._logoutAlert()
                   } else
                     this.props.navigation.navigate('Login')
                 }
