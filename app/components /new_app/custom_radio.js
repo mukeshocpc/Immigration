@@ -9,14 +9,18 @@ import RadioForm, {
 export default class clsLegendRadio extends React.Component {
   constructor(props) {
     super(props);
-    this.selected = 0;
+    this.selected = this.props.select;
+    // alert(this.selected);
   }
 
   render() {
     return (
       <View style={style.containerStyle}>
         <Text>{this.props.title}</Text>
-        <RadioForm formHorizontal={true} labelHorizontal={true}>
+        <RadioForm
+          formHorizontal={true}
+          initial={this.selected}
+          labelHorizontal={true}>
           {this.props.data.map((obj, i) => (
             <RadioButton labelHorizontal={true} key={i}>
               <RadioButtonInput

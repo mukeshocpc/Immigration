@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, TextInput} from 'react-native';
 
-const InputTextfield = ({placeholder, value, callback}) => {
+const InputTextfield = ({placeholder, value, onChangeText}) => {
   return (
     <View style={InputTextfieldStyle.containerStyle}>
       <TextInput
-        text={value}
-        onChangeText={text => callback(text)}
+        defaultValue={value}
+        onChangeText={text => onChangeText(text)}
         placeholder={placeholder}
         style={InputTextfieldStyle.textStyle}
       />
@@ -30,16 +30,5 @@ const InputTextfieldStyle = {
     height: 50,
     fontSize: 15,
     margin: 0,
-  },
-  textAreaStyle: {
-    color: '#000',
-    borderRadius: 25,
-    backgroundColor: '#F1F3F6',
-    padding: 15,
-    height: 140,
-    fontSize: 15,
-    margin: 0,
-    marginTop: 10,
-    textAlignVertical: 'top',
   },
 };

@@ -2,10 +2,9 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Dropdown} from 'react-native-element-dropdown';
 
-const DropdownComponent = ({label, data, search, callback}) => {
-  const [value, setValue] = useState('');
+const DropdownComponent = ({label, data, val, search, onChange}) => {
+  const [value, setValue] = useState(val);
   const [isFocus, setIsFocus] = useState(false);
-
   const renderLabel = () => {
     if (value || isFocus) {
       return (
@@ -36,7 +35,7 @@ const DropdownComponent = ({label, data, search, callback}) => {
         onChange={item => {
           // alert(item.value);
           setValue(item.value);
-          callback(item.value);
+          onChange(item.value);
           setIsFocus(false);
         }}
       />

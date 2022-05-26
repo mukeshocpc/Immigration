@@ -46,7 +46,7 @@ class Home extends Component {
                 icon={
                   <UserIcon style={{marginLeft: 0}} width="85" height="85" />
                 }
-                backgroundColor={['#206A88', '#206A88', '#fff']}
+                backgroundColor={['#1e6886', '#6dbebe']}
               />
 
               <CardView
@@ -57,7 +57,7 @@ class Home extends Component {
                 icon={
                   <UpdateIcon style={{marginLeft: 0}} width="85" height="85" />
                 }
-                backgroundColor={['#f57d3c', '#3b5998', '#192f6a']}
+                backgroundColor={['#ff5830', '#ffac98']}
               />
 
               <CardView
@@ -73,7 +73,7 @@ class Home extends Component {
                     height="85"
                   />
                 }
-                backgroundColor={['#1f5e95', '#3b5998', '#192f6a']}
+                backgroundColor={['#005f97', '#99bfd5']}
               />
 
               <CardView
@@ -84,7 +84,7 @@ class Home extends Component {
                 icon={
                   <LogoutIcon style={{marginLeft: 0}} width="85" height="85" />
                 }
-                backgroundColor={['#1f5e95', '#3b5998', '#192f6a']}
+                backgroundColor={['#8992A9', '#c4c9d4']}
               />
             </View>
           </ScrollView>

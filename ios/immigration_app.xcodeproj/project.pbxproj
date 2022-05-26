@@ -577,6 +577,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = immigration_app/immigration_app.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LM26RX433D;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = immigration_app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -604,6 +605,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = immigration_app/immigration_app.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LM26RX433D;
 				INFOPLIST_FILE = immigration_app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
