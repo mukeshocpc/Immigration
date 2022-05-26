@@ -43,7 +43,7 @@ export default OTPView = (props) => {
             <Text style={styles.sectionTitle}>Verfiy</Text>
             <Text style={styles.sectionDescription}>Please enter the OTP we've sent to your mobile</Text>
             <OTPInputView
-                style={{ width: '80%', height: 100, alignSelf: 'center', }}
+                style={{ width: '95%', height: 100, alignSelf: 'center', }}
                 pinCount={6}
                 //code={code}
                 onCodeChanged={code => { setCode({ code }) }}
@@ -52,7 +52,7 @@ export default OTPView = (props) => {
                 codeInputHighlightStyle={{ borderColor: 'green', color: "#000" }}
                 onCodeFilled={(code) => {
                     props.onPress(code)
-                    console.log(`Code is ${code}, you are good to go!`)
+                    //console.log(`Code is ${code}, you are good to go!`)
                 }}
             />
             <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
