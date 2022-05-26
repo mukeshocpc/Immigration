@@ -11,6 +11,7 @@ import UserInfo from './userInfo';
 
 class Login extends Component {
   state = {
+    state: 0,
     phone: undefined,
     code: undefined,
     confirm: undefined,
@@ -18,28 +19,62 @@ class Login extends Component {
     user: undefined,
   };
 
-  signInWithPhoneNumber = async () => {
-    let { phone } = this.state
-    const confirm = await auth().signInWithPhoneNumber(phone);
-    this.setState({ confirm });
+  signInWithPhoneNumber = async (phone) => {
+    try {
+      const confirm = await auth().signInWithPhoneNumber(phone);
+      console.log("confirm", confirm)
+      this.setState({ phone, confirm });
+    } catch (error) {
+      alert(error)
+    }
+
   }
 
 
-  confirmCode = async () => {
-    let { confirm, code } = this.state
-    if (confirm) {
+
+
+  confirmCode = async (code) => {
+
+    let { confirm } = this.state
+
+    if (confirm != undefined) {
       try {
-        await confirm.confirm(code);
+        console.log('confirmCode', code)
+        let data = await confirm.confirm(String(code));
+        let { displayName, email } = data.user
+        console.log('IsUserInfoValid', data, displayName, email)
+
+        if (displayName && email) this.props.navigation.goBack()
+        else
+          this.setState({ user: data.user })
+        // console.log(data)
+
       } catch (error) {
-        this.setState({ code: undefined })
-        console.log('Invalid code.');
+        console.log('Invalid code.', error);
       }
     }
   }
 
 
+  _updateUserData = async (data) => {
+    console.log(data)
+    let { fname, lastName, email } = data
+    try {
+      await auth().currentUser.updateProfile({ displayName: fname + " " + lastName });
+      await auth().currentUser.updateEmail(String(email));
+      let user = await auth().currentUser
+      console.log("_updateUserData", user)
+      this.props.navigation.goBack()
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
+
+
   render() {
-    let { phone, otp, user, confirm } = this.state;
+    let { phone, user, confirm } = this.state;
+
     return (
       <SafeAreaView style={{ flex: 1 }}>
         <ScrollView
@@ -50,16 +85,20 @@ class Login extends Component {
           <View style={styles.body}>
             {phone == undefined &&
               <InputPhone
-                defaultValue={'9886282641'}
-                onPress={phone => this.setState({ phone }, this.signInWithPhoneNumber)} />}
-            {phone != undefined && otp == undefined && (
+                onSubmit={(data) => this.setState({ ...data, state: 1 })}
+                defaultValue={''}
+                onPress={this.signInWithPhoneNumber} />}
+
+
+
+            {(phone != undefined && user == undefined && confirm != undefined) && (
               <OTPView
-                onPress={otp => this.setState({ otp }, this.confirmCode)}
-                onResendOTP={otp => this.setState({ otp }, this.confirmCode)}
+                onPress={this.confirmCode}
+                onResendOTP={_ => this.signInWithPhoneNumber({ phone })}
               />
             )}
-            {user != undefined && (
-              <UserInfo onPress={user => this.setState({ user })} />
+            {user != undefined && user.displayName == undefined && user.email == undefined && (
+              <UserInfo onPress={user => this._updateUserData({ ...user })} />
             )}
           </View>
         </ScrollView>

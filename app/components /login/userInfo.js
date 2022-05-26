@@ -11,9 +11,9 @@ import {
 
 export default UserInfo = (props) => {
     const [value, setValue] = useState("");
-    const [fname, setFirstName] = React.useState("");
-    const [lastname, setLastName] = React.useState("");
-    const [email, setEmail] = React.useState("");
+    const [fname, setFirstName] = React.useState("Mukesh");
+    const [lastName, setLastName] = React.useState("Jha");
+    const [email, setEmail] = React.useState("mukeshjha313@gmail.com");
     const phoneInput = useRef(null);
 
 
@@ -32,7 +32,7 @@ export default UserInfo = (props) => {
             <TextInput
                 style={styles.input}
                 onChangeText={setLastName}
-                value={lastname}
+                value={lastName}
                 placeholder="Last Name"
                 placeholderTextColor="#252847"
 
@@ -41,6 +41,7 @@ export default UserInfo = (props) => {
                 style={styles.input}
                 onChangeText={setEmail}
                 value={email}
+                keyboardType="email-address"
                 placeholder="Email"
                 placeholderTextColor="#252847"
 
@@ -49,9 +50,10 @@ export default UserInfo = (props) => {
                 activeOpacity={0.8}
                 style={styles.submit}
                 onPress={() => {
-                    const checkValid = fname.length > 0 && lastname.length > 0 && email.length > 0;
+                    // props.onPress({ fname, lastName, email })
+                    const checkValid = fname.length > 0 && lastName.length > 0 && email.length > 0;
                     if (checkValid) {
-                        props.onPress({ fname, lastname, email })
+                        props.onPress({ fname, lastName, email })
 
                     } else {
                         alert("Invalid User Info")

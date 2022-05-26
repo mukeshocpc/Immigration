@@ -34,12 +34,7 @@ export default OTPView = (props) => {
     }
 
 
-    useEffect(() => {
-        startTimer()
-        return () => {
-            clearInterval(timerId);
-        };
-    }, []);
+
 
 
 
@@ -49,13 +44,14 @@ export default OTPView = (props) => {
             <Text style={styles.sectionDescription}>Please enter the OTP we've sent to your mobile</Text>
             <OTPInputView
                 style={{ width: '80%', height: 100, alignSelf: 'center', }}
-                pinCount={4}
+                pinCount={6}
                 //code={code}
                 onCodeChanged={code => { setCode({ code }) }}
                 autoFocusOnLoad
                 codeInputFieldStyle={{ borderColor: '#016CAB', color: "#000" }}
                 codeInputHighlightStyle={{ borderColor: 'green', color: "#000" }}
                 onCodeFilled={(code) => {
+                    props.onPress(code)
                     console.log(`Code is ${code}, you are good to go!`)
                 }}
             />

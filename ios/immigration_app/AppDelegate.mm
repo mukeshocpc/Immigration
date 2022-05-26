@@ -65,7 +65,7 @@
   UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
   center.delegate = self;
   
-// [FIRApp configure];
+  [FIRApp configure];
   return YES;
 }
 
