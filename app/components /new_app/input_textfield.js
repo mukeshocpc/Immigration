@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View, TextInput} from 'react-native';
 
-const InputTextfield = ({placeholder, value, onChangeText}) => {
+const InputTextfield = ({placeholder, value, onChangeText, onFocus}) => {
   return (
     <View style={InputTextfieldStyle.containerStyle}>
       <TextInput
         defaultValue={value}
         onChangeText={text => onChangeText(text)}
         placeholder={placeholder}
+        onFocus={onFocus}
         style={InputTextfieldStyle.textStyle}
       />
     </View>

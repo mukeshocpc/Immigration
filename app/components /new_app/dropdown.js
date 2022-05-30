@@ -13,7 +13,7 @@ const DropdownComponent = ({label, data, val, search, onChange}) => {
     }
     return null;
   };
-
+  // alert(value);
   return (
     <View style={styles.container}>
       {renderLabel()}

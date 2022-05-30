@@ -1,24 +1,23 @@
-import React, { Component } from "react";
+import React, {Component} from 'react';
 import messaging from '@react-native-firebase/messaging';
-import PushNotification, { Importance } from 'react-native-push-notification';
-import { Platform } from "react-native";
+import PushNotification, {Importance} from 'react-native-push-notification';
+import {Platform} from 'react-native';
 
-import { saveData } from "@utils/utility";
+import {saveData} from '@utils/utility';
 
 class NotificationController extends Component {
   constructor(props) {
     super(props);
   }
 
-
   checkToken = async () => {
-    console.log('checkToken')
+    console.log('checkToken');
     const fcmToken = await messaging().getToken();
     if (fcmToken) {
-      await saveData({ fcmToken }, 'fcmToken')
-      console.log("fcmToken => ", fcmToken);
+      await saveData({fcmToken}, 'fcmToken');
+      console.log('fcmToken => ', fcmToken);
     }
-  }
+  };
 
   registerForRemoteMessages = () => {
     messaging()
@@ -28,13 +27,12 @@ class NotificationController extends Component {
         this.requestPermissions();
       })
       .catch(e => console.log(e));
-  }
-
+  };
 
   requestPermissions = () => {
     messaging()
       .requestPermission()
-      .then((status) => {
+      .then(status => {
         if (status === 1) {
           console.log('Authorized');
           this.onMessage();
@@ -43,13 +41,11 @@ class NotificationController extends Component {
         }
       })
       .catch(e => console.log(e));
-  }
+  };
 
-
-
-  showNotification = (notification) => {
+  showNotification = notification => {
     console.log('Showing notification');
-    console.log(JSON.stringify(notification));
+    alert(JSON.stringify(notification));
 
     // if (Platform.OS == 'ios') {
     //   PushNotificationIOS.addNotificationRequest({
@@ -66,37 +62,33 @@ class NotificationController extends Component {
     //   });
   };
 
-
   componentDidMount = async () => {
-    await this.requestUserPermission()
-    this.checkToken()
-    this.onMessage()
-
+    await this.requestUserPermission();
+    this.checkToken();
+    this.onMessage();
 
     if (Platform.OS == 'android') {
-
       PushNotification.createChannel(
         {
-          channelId: "1212344", // (required)
-          channelName: "Immigartion", // (required)
-          channelDescription: "A channel to categorise your notifications", // (optional) default: undefined.
+          channelId: '1212344', // (required)
+          channelName: 'Immigartion', // (required)
+          channelDescription: 'A channel to categorise your notifications', // (optional) default: undefined.
           playSound: false, // (optional) default: true
-          soundName: "default", // (optional) See `soundName` parameter of `localNotification` function
+          soundName: 'default', // (optional) See `soundName` parameter of `localNotification` function
           importance: Importance.HIGH, // (optional) default: Importance.HIGH. Int value of the Android notification importance
           vibrate: true, // (optional) default: true. Creates the default vibration pattern if true.
         },
-        (created) => console.log(`createChannel returned '${created}'`) // (optional) callback returns whether the channel was created, false means it already existed.
+        created => console.log(`createChannel returned '${created}'`), // (optional) callback returns whether the channel was created, false means it already existed.
       );
     }
 
-    messaging().setBackgroundMessageHandler(async (remoteMessage) => {
+    messaging().setBackgroundMessageHandler(async remoteMessage => {
       console.log('Your message was handled in background');
     });
     messaging().onNotificationOpenedApp(remoteMessage => {
       console.log('Notification caused app to open from background state:');
       console.log(remoteMessage);
-
-    })
+    });
 
     messaging()
       .getInitialNotification()
@@ -108,7 +100,6 @@ class NotificationController extends Component {
           );
           // setInitialRoute(remoteMessage.data.type); // e.g. "Settings"
         }
-
       });
 
     if (Platform.OS == 'ios') {
@@ -116,26 +107,24 @@ class NotificationController extends Component {
         .getIsHeadless()
         .then(isHeadless => {
           // do sth with isHeadless
-          console.log("Headless =>", isHeadless)
+          console.log('Headless =>', isHeadless);
         });
     }
-
-
-  }
+  };
 
   onMessage = async () => {
     messaging().onMessage(response => {
-      console.log("showNotification", response)
-      let { body, title } = response.notification
+      console.log('showNotification', response);
+      let {body, title} = response.notification;
       // PushNotificationIOS.addNotificationRequest(response);
       PushNotification.localNotification({
         //... You can use all the options from localNotifications
-        channelId: "1212344",
+        channelId: '1212344',
         message: body, // (required)
         title: title,
-        smallIcon: "ic_stat_name",
-        largeIcon: "",
-        color: "#5BCD6D",
+        smallIcon: 'ic_stat_name',
+        largeIcon: '',
+        color: '#5BCD6D',
         date: new Date(Date.now() + 2 * 1000), // in 60 secs
         allowWhileIdle: false, // (optional) set notification to work while on doze, default: false
         /* Android Only Properties */
@@ -145,9 +134,8 @@ class NotificationController extends Component {
   };
 
   componentWillUnmount() {
-    if (this.unsubscribe) this.unsubscribe()
+    if (this.unsubscribe) this.unsubscribe();
   }
-
 
   requestUserPermission = async () => {
     const authStatus = await messaging().requestPermission();
@@ -158,7 +146,7 @@ class NotificationController extends Component {
     if (enabled) {
       console.log('Authorization status:', authStatus);
     }
-  }
+  };
 
   render() {
     return null;

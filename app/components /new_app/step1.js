@@ -8,18 +8,27 @@ import {
   ScrollView,
   Button,
   TouchableHighlight,
+  Keyboard,
 } from 'react-native';
 import CustomRadio from './custom_radio';
 import DropdownComponent from './dropdown';
 import Dropdown from './dropdown';
 import InputTextfield from './input_textfield';
 import CommonStyle from '../../common/style';
-import {getRadioLabel, getRadioIndex, validateEmail} from '../../common/util';
+import {
+  getRadioLabel,
+  getRadioIndex,
+  validateEmail,
+  getFormattedDate,
+} from '../../common/util';
+import DatePicker from 'react-native-date-picker';
 
 function Step1(props) {
   //   const [fname, setFname] = useState(
   //     props.default ? props.default.fname : undefined,
   //   );
+  const [date, setDate] = useState(new Date());
+  const [open, setOpen] = useState(false);
 
   const genderArr = [
     {label: 'Male', value: 0},
@@ -39,7 +48,6 @@ function Step1(props) {
     {label: '4', value: 4},
     {label: '5+', value: 5},
   ];
-
   return (
     <View style={{backgroundColor: '#fff'}}>
       <InputTextfield
@@ -74,11 +82,31 @@ function Step1(props) {
         title="Gender"
         data={genderArr}
       />
+      <DatePicker
+        modal
+        open={open}
+        date={date}
+        mode="date"
+        onConfirm={date => {
+          setOpen(false);
+          setDate(date);
+          let dob = getFormattedDate(date);
+          props.onChange({dob});
+          //   props.default({dob: '12/12/2212'});
+        }}
+        onCancel={() => {
+          setOpen(false);
+        }}
+      />
       <InputTextfield
         placeholder="Date of Birth (MM/DD/YYYY)"
         value={props.default ? props.default.dob : ''}
-        onChangeText={dob => props.onChange({dob})}
+        onFocus={() => {
+          Keyboard.dismiss();
+          setOpen(true);
+        }}
       />
+
       <CustomRadio
         title="Marital Status"
         select={getRadioIndex(
@@ -104,7 +132,6 @@ function Step1(props) {
         style={CommonStyle.actionButton}
         onPress={() => {
           //   props.onNext({step0: true});
-
           if (!props.default.fname) {
             alert('Please enter First name');
           } else if (!props.default.lname || props.default.lname.length == 0) {
@@ -120,7 +147,6 @@ function Step1(props) {
           } else {
             props.onNext({step0: true});
           }
-
           //   data['ad'] = 'da';
           //   alert(JSON.stringify(data));
           //   props.onPress({fname, lname, email});

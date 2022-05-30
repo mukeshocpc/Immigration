@@ -69,9 +69,6 @@ function Step2(props) {
     {label: '10-15 Years', value: '10-15 Years'},
     {label: '15+ Years', value: '15+ Years'},
   ];
-  // alert(props.default.citizenship1);
-  // alert(JSON.stringify(countryArr));
-  // alert(getRadioIndex(countryArr, props.default.citizenship1));
   return (
     <View style={{backgroundColor: '#fff'}}>
       <DropdownComponent
@@ -79,7 +76,7 @@ function Step2(props) {
         label="Country of Citizenship (1): *"
         data={countryArr}
         val={
-          props.default
+          props.default.citizenship1
             ? countryArr[getRadioIndex(countryArr, props.default.citizenship1)]
                 .value
             : ''
@@ -94,7 +91,7 @@ function Step2(props) {
         label="Country of Residence (1): *"
         data={countryArr}
         val={
-          props.default
+          props.default.residence1
             ? countryArr[getRadioIndex(countryArr, props.default.residence1)]
                 .value
             : undefined
@@ -109,7 +106,7 @@ function Step2(props) {
         label="Country of Citizenship (2):"
         data={countryArr}
         val={
-          props.default
+          props.default.citizenship2
             ? countryArr[getRadioIndex(countryArr, props.default.citizenship2)]
                 .value
             : undefined
@@ -124,7 +121,7 @@ function Step2(props) {
         label="Country of Residence (2):"
         data={countryArr}
         val={
-          props.default
+          props.default.residence2
             ? countryArr[getRadioIndex(countryArr, props.default.residence2)]
                 .value
             : undefined
@@ -228,7 +225,6 @@ function Step2(props) {
           } else if (!props.default.experience) {
             alert('Please select years of work experience');
           } else {
-            props.onNext({step1: true});
           }
         }}>
         <Text style={{color: '#FFF', fontSize: 18, fontWeight: '600'}}>

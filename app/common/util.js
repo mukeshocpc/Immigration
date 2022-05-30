@@ -22,3 +22,23 @@ export const validateEmail = email => {
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     );
 };
+
+export const getFormattedDate = date => {
+  let month = String(date.getMonth() + 1);
+  let day = String(date.getDate());
+  const year = String(date.getFullYear());
+
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
+
+  return `${month}/${day}/${year}`;
+};
+
+export const removeNull = obj => {
+  let newObj = {};
+  Object.keys(obj).forEach(key => {
+    if (obj[key] === Object(obj[key])) newObj[key] = removeEmpty(obj[key]);
+    else if (obj[key] !== undefined) newObj[key] = obj[key];
+  });
+  return newObj;
+};
