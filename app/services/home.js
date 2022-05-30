@@ -1,7 +1,7 @@
 const axios = require('axios');
 
-import {removeNull} from '../../common/util';
-import {getData} from '../../utils/utility';
+import { removeNull } from '@common/util';
+import { getData } from '@utils/utility';
 import customAxios from './axios';
 
 const createApplication = async data => {
@@ -72,7 +72,7 @@ const createApplication = async data => {
 
   let token = await getData('fcmToken');
   let fcmToken = token.fcmToken;
-  let {contactId} = await getData('contactId');
+  let { contactId } = await getData('contactId');
 
   let payload = {
     deal: {
@@ -95,7 +95,7 @@ const createApplication = async data => {
 const createContact = async data => {
   //sample
   // console.log(payload, `/login/user`)
-  let {fname, lastName, email, mobile} = data;
+  let { fname, lastName, email, mobile } = data;
 
   let payload = {
     contact: {
@@ -127,7 +127,7 @@ const createContact = async data => {
 };
 
 const getApplications = async () => {
-  let {contactId} = await getData('contactId');
+  let { contactId } = await getData('contactId');
 
   let response = await customAxios.get(
     `/crm/sales/api/contacts/${contactId}?include=deals`,
@@ -136,4 +136,4 @@ const getApplications = async () => {
   return response;
 };
 
-export {createApplication, createContact, getApplications};
+export { createApplication, createContact, getApplications };

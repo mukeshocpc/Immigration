@@ -1,60 +1,80 @@
-import React, {Component} from 'react';
-import {View, Text, StyleSheet, FlatList, Image} from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, FlatList, Image } from 'react-native';
 
-import {NotifcationIcon} from '@utils/icons';
-import {getApplications} from '../service/Home';
+import { ChatIcon } from '@utils/icons';
+import { getApplications } from '@services/home';
+import moment from 'moment';
 
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: '#103 Chat Support',
-    sub: 'We need more details for your application.Lets discuss',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: '#103 Chat Support',
-    sub: 'We need more details for your application.Lets discuss',
-  },
-];
+
 
 class MyApplications extends Component {
-  state = {deals: []};
+  state = {
+    deals: [{
+      name: "mukesh Jha"
+    }]
+  };
 
   componentDidMount() {
     this.getApplications();
   }
 
-  renderItem = ({item, index}) => (
+  renderItem = ({ item, index }) => (
     <View
       style={{
+        borderRadius: 10,
+        margin: 10,
+        borderWidth: 1,
         flexDirection: 'row',
         justifyContent: 'flex-start',
         paddingHorizontal: 5,
         padding: 10,
-        marginHorizontal: 10,
-        borderBottomColor: '#000000',
-        borderBottomWidth: index == 0 ? 0 : 0.2,
+        // paddingHorizontal: 10,
+        borderColor: '#000000',
+        //borderBottomWidth: index == 0 ? 0 : 0.2,
         borderTopWidth: 0.2,
         paddingVertical: 10,
+
       }}>
-      <Image
+      <View
         style={{
-          width: 60,
-          height: 60,
-          borderRadius: 60 / 2,
-          borderColor: '#000',
-          borderWidth: 1,
-        }}
-        source={{uri: 'https://picsum.photos/200'}}
-      />
+          flexDirection: 'column',
+          // marginLeft: 20,
+          marginRight: 5,
+          justifyContent: 'space-between',
+          width: '75%',
+        }}>
+        <View
+          style={{
+            flexDirection: 'row',
+            marginLeft: 20,
+            marginRight: 5,
+            justifyContent: 'space-between',
+            width: '75%',
+          }}>
+          <Text style={{ fontWeight: '600' }}>{item.name.toUpperCase()}</Text>
+          <Text style={{ fontWeight: '600' }}>Pending</Text>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            marginLeft: 20,
+            marginRight: 5,
+            justifyContent: 'flex-start',
+            width: '75%',
+          }}>
+          <Text style={{ fontWeight: '300' }}>Case <Text style={{ color: 'blue', fontWeight: '500' }}> #100</Text></Text>
+          <Text style={{ fontWeight: '300' }}> on {moment().format("MM/DD/YYYY")}</Text>
+        </View>
+      </View>
       <View
         style={{
           flexDirection: 'column',
           marginLeft: 20,
           marginRight: 5,
-          width: '75%',
+          width: '25%',
         }}>
-        <Text style={{fontWeight: '600'}}>{item.name}</Text>
+
+        <ChatIcon width={50} height={50} color={'#015F97'} />
         {/* <Text style={{fontSize: 12, paddingVertical: 5}}>{item.sub}</Text> */}
       </View>
     </View>
@@ -63,7 +83,7 @@ class MyApplications extends Component {
   getApplications = async () => {
     try {
       let response = await getApplications();
-      this.setState({deals: response.data.deals});
+      this.setState({ deals: response.data.deals });
       console.log('getApplications - ', response);
     } catch (error) {
       console.log('getApplications error - ', error);
@@ -71,19 +91,18 @@ class MyApplications extends Component {
   };
 
   render() {
-    let {deals} = this.state;
+    let { deals } = this.state;
     return (
       <View style={styles.body}>
         <View
           style={{
-            height: '20%',
+            height: '10%',
             flexDirection: 'column',
             alignContent: 'center',
             justifyContent: 'space-around',
             alignItems: 'center',
           }}>
-          <NotifcationIcon width={100} height={100} color={'#015F97'} />
-          <Text style={{fontWeight: '700', fontSize: 20}}>My Applications</Text>
+          <Text style={{ fontWeight: '700', fontSize: 20 }}>My Applications</Text>
         </View>
 
         <FlatList

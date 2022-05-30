@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {alertActions, msgActions} from '@actions';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { alertActions, msgActions } from '@actions';
 import {
   SafeAreaView,
   StyleSheet,
@@ -11,7 +11,7 @@ import {
   StatusBar,
 } from 'react-native';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 import CardView from './card';
 import {
   UserIcon,
@@ -23,16 +23,16 @@ import {
 import auth from '@react-native-firebase/auth';
 
 class Home extends Component {
-  state = {text: 'h', user: undefined};
+  state = { text: 'h', user: undefined };
 
   componentWillMount() {
     // Add listener here
     this.unsubscribe = auth().onAuthStateChanged(user => {
       if (!user) {
-        this.setState({user: undefined});
+        this.setState({ user: undefined });
         console.log('not login');
       } else {
-        this.setState({user});
+        this.setState({ user });
         console.log('Logged in', user);
       }
     });
@@ -48,7 +48,7 @@ class Home extends Component {
       'Alert',
       'Are you sure you want to logout?',
       [
-        {text: 'Yes', onPress: () => auth().signOut()},
+        { text: 'Yes', onPress: () => auth().signOut() },
         {
           text: 'No',
           onPress: () => console.log('No button clicked'),
@@ -66,13 +66,13 @@ class Home extends Component {
   };
 
   render() {
-    let {user} = this.state;
+    let { user } = this.state;
     return (
       <>
         <StatusBar barStyle="dark-content" />
-        <SafeAreaView style={{backgroundColor: 'white', flex: 1}}>
+        <SafeAreaView style={{ backgroundColor: 'white', flex: 1 }}>
           <ScrollView
-            contentContainerStyle={{justifyContent: 'center'}}
+            contentContainerStyle={{ justifyContent: 'center' }}
             contentInsetAdjustmentBehavior="automatic"
             style={styles.scrollView}>
             <View style={styles.body}>
@@ -86,14 +86,14 @@ class Home extends Component {
                   )
                 }
                 icon={
-                  <UserIcon style={{marginLeft: 0}} width="85" height="85" />
+                  <UserIcon style={{ marginLeft: 0 }} width="85" height="85" />
                 }
                 backgroundColor={['#1e6886', '#6dbebe']}
               />
 
               <CardView
                 title="My Applications"
-                subTitle="Fill out details here"
+                subTitle="Get your applications"
                 color={'#206A88'}
                 onPress={() =>
                   this.props.navigation.navigate(
@@ -101,7 +101,7 @@ class Home extends Component {
                   )
                 }
                 icon={
-                  <UserIcon style={{marginLeft: 0}} width="85" height="85" />
+                  <UserIcon style={{ marginLeft: 0 }} width="85" height="85" />
                 }
                 backgroundColor={['#1e6886', '#6dbebe']}
               />
@@ -114,7 +114,7 @@ class Home extends Component {
                   this.props.navigation.navigate(user ? 'Updates' : 'Login')
                 }
                 icon={
-                  <UpdateIcon style={{marginLeft: 0}} width="85" height="85" />
+                  <UpdateIcon style={{ marginLeft: 0 }} width="85" height="85" />
                 }
                 backgroundColor={['#ff5830', '#ffac98']}
               />
@@ -131,7 +131,7 @@ class Home extends Component {
                 color={'#1f5e95'}
                 icon={
                   <NotifcationIcon
-                    style={{marginLeft: 0}}
+                    style={{ marginLeft: 0 }}
                     width="85"
                     height="85"
                   />
@@ -149,7 +149,7 @@ class Home extends Component {
                 subTitle={!user ? 'Signin/Join here' : 'Signout'}
                 color={'#BC59AE'}
                 icon={
-                  <LogoutIcon style={{marginLeft: 0}} width="85" height="85" />
+                  <LogoutIcon style={{ marginLeft: 0 }} width="85" height="85" />
                 }
                 backgroundColor={['#8992A9', '#c4c9d4']}
               />
@@ -209,8 +209,8 @@ const styles = StyleSheet.create({
 });
 
 function mapState(state) {
-  const {message} = state;
-  return {message: message.message};
+  const { message } = state;
+  return { message: message.message };
 }
 const actionCreators = {
   success: alertActions.success,

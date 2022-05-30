@@ -1,4 +1,4 @@
-import React, {Component, useState, useMemo} from 'react';
+import React, { Component, useState, useMemo } from 'react';
 import {
   View,
   Text,
@@ -9,10 +9,9 @@ import {
   Button,
   TouchableHighlight,
 } from 'react-native';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
-import {step1} from 'react-native/Libraries/Animated/Easing';
-import {createApplication} from '../service/Home';
+import { createApplication } from '@services/home';
 import Step1 from './step1';
 import Step2 from './step2';
 import Step3 from './step3';
@@ -53,19 +52,19 @@ class NewApplication extends Component {
   onCreateApp = async () => {
     let data = await createApplication(this.state);
     if (data.status == 200) {
-      this.props.navigation.navigate('ApplicationAdded', {case: '100'});
+      this.props.navigation.navigate('ApplicationAdded', { case: '100' });
     } else {
       alert('Something went wrong. Please try again later.');
     }
   };
 
   render() {
-    let {selectedIndex} = this.state;
+    let { selectedIndex } = this.state;
     return (
-      <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
         <View style={styles.tab}>
           <SegmentedControlTab
-            tabStyle={{height: 34}}
+            tabStyle={{ height: 34 }}
             values={['Personal Info', 'General Info', 'Financial Info']}
             selectedIndex={selectedIndex}
             onTabPress={this.handleIndexChange}
@@ -73,7 +72,7 @@ class NewApplication extends Component {
         </View>
         <KeyboardAwareScrollView
           bounces={true}
-          contentContainerStyle={{height: '180%'}}
+          contentContainerStyle={{ height: '180%' }}
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
           {selectedIndex == 0 && (
@@ -85,7 +84,7 @@ class NewApplication extends Component {
                 // alert(JSON.stringify(this.state));
               }}
               onNext={step0 => {
-                this.setState({step0, selectedIndex: 1}, () => {
+                this.setState({ step0, selectedIndex: 1 }, () => {
                   // callback updated here
                 });
                 // alert(JSON.stringify(this.state));

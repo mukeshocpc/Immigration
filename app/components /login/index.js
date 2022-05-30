@@ -1,14 +1,14 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {alertActions, msgActions} from '@actions';
-import {SafeAreaView, StyleSheet, ScrollView, View} from 'react-native';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { alertActions, msgActions } from '@actions';
+import { SafeAreaView, StyleSheet, ScrollView, View } from 'react-native';
 import auth from '@react-native-firebase/auth';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 import OTPView from './otp';
 import InputPhone from './phone';
 import UserInfo from './userInfo';
-import {createContact} from '../service/Home';
-import {saveData} from '@utils/utility';
+import { createContact } from '@services/home';
+import { saveData } from '@utils/utility';
 
 class Login extends Component {
   state = {
@@ -24,24 +24,24 @@ class Login extends Component {
     try {
       const confirm = await auth().signInWithPhoneNumber(phone);
       console.log('confirm', confirm);
-      this.setState({phone, confirm});
+      this.setState({ phone, confirm });
     } catch (error) {
       alert(error);
     }
   };
 
   confirmCode = async code => {
-    let {confirm} = this.state;
+    let { confirm } = this.state;
 
     if (confirm != undefined) {
       try {
         console.log('confirmCode', code);
         let data = await confirm.confirm(String(code));
-        let {displayName, email} = data.user;
+        let { displayName, email } = data.user;
         console.log('IsUserInfoValid', data, displayName, email);
 
         if (displayName && email) this.props.navigation.goBack();
-        else this.setState({user: data.user});
+        else this.setState({ user: data.user });
         // console.log(data)
       } catch (error) {
         console.log('Invalid code.', error);
@@ -51,7 +51,7 @@ class Login extends Component {
 
   _updateUserData = async data => {
     console.log(data);
-    let {fname, lastName, email} = data;
+    let { fname, lastName, email } = data;
     try {
       await auth().currentUser.updateEmail(String(email));
       let user = await auth().currentUser;
@@ -71,7 +71,7 @@ class Login extends Component {
       await auth().currentUser.updateProfile({
         displayName: fname + ' ' + lastName + ' ' + contactId,
       });
-      await saveData({contactId}, 'contactId');
+      await saveData({ contactId }, 'contactId');
 
       this.props.navigation.goBack();
     } catch (error) {
@@ -80,19 +80,19 @@ class Login extends Component {
   };
 
   render() {
-    let {phone, user, confirm} = this.state;
+    let { phone, user, confirm } = this.state;
 
     return (
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaView style={{ flex: 1 }}>
         <ScrollView
           bounces={false}
-          contentContainerStyle={{justifyContent: 'center', height: '100%'}}
+          contentContainerStyle={{ justifyContent: 'center', height: '100%' }}
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
           <View style={styles.body}>
             {phone == undefined && (
               <InputPhone
-                onSubmit={data => this.setState({...data, state: 1})}
+                onSubmit={data => this.setState({ ...data, state: 1 })}
                 defaultValue={''}
                 onPress={this.signInWithPhoneNumber}
               />
@@ -103,13 +103,13 @@ class Login extends Component {
               confirm != undefined && (
                 <OTPView
                   onPress={this.confirmCode}
-                  onResendOTP={_ => this.signInWithPhoneNumber({phone})}
+                  onResendOTP={_ => this.signInWithPhoneNumber({ phone })}
                 />
               )}
             {user != undefined &&
               user.displayName == undefined &&
               user.email == undefined && (
-                <UserInfo onPress={user => this._updateUserData({...user})} />
+                <UserInfo onPress={user => this._updateUserData({ ...user })} />
               )}
           </View>
         </ScrollView>
@@ -175,8 +175,8 @@ const styles = StyleSheet.create({
 });
 
 function mapState(state) {
-  const {message} = state;
-  return {message: message.message};
+  const { message } = state;
+  return { message: message.message };
 }
 const actionCreators = {
   success: alertActions.success,

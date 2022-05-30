@@ -1,14 +1,14 @@
 import React from 'react';
-import {SvgFromXml} from 'react-native-svg';
+import { SvgFromXml } from 'react-native-svg';
 
-export const UserIcon = ({width, height}) => {
+export const UserIcon = ({ width, height }) => {
   const xml = `
   <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path fill-rule="evenodd" clip-rule="evenodd" d="M63.388 0.927002C60.399 2.21 57 6.843 57 9.635C57 11.716 57.467 12 60.883 12C63.922 12 64.88 11.566 65.288 10.005C65.926 7.569 68.735 6.335 70.234 7.834C72.019 9.619 71.493 14.842 69.284 17.258C66.556 20.242 64 25.414 64 27.95C64 29.675 64.634 30 68 30C71.517 30 72 29.72 72 27.68C72 26.404 73.688 23.389 75.75 20.979C79.056 17.117 79.5 15.973 79.5 11.322C79.5 6.956 79.046 5.591 76.868 3.413C73.998 0.543002 67.201 -0.710998 63.388 0.927002ZM25.45 17.407C15.361 21.801 12.978 35.213 20.882 43.118C27.369 49.604 36.631 49.604 43.118 43.118C55.529 30.706 41.566 10.387 25.45 17.407ZM65.35 35.765C62.901 37.33 63.349 42.659 66 43.5C69.433 44.59 72 43.149 72 40.133C72 35.88 68.632 33.669 65.35 35.765ZM20.23 57.486C12.825 59.57 9.438 61.509 4.392 66.555C0.496 70.451 0 71.459 0 75.474V80H32H64V75.452C64 71.353 63.526 70.431 59.191 66.096C52.89 59.795 45.399 56.909 34 56.39C28.421 56.136 23.689 56.513 20.23 57.486Z" fill="white"/>
   </svg>`;
   return <SvgFromXml xml={xml} width={width} height={height} />;
 };
-export const UpdateIcon = ({style, width, height, color = 'white'}) => {
+export const UpdateIcon = ({ style, width, height, color = 'white' }) => {
   const xml = `
   <svg width="76" height="76" viewBox="0 0 76 76" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M2.59139 2.59139L0 5.18172V38V70.8183L2.59139 73.4086L5.18172 76H38H70.8183L73.4086 73.4086L76 70.8183V38V5.18172L73.4086 2.59139L70.8183 0H38H5.18172L2.59139 2.59139ZM26.6011 13.8542C47.2203 18.2326 63.3333 37.9504 63.3333 58.805V63.3333H59.2557H55.1781L54.6366 56.5894C53.0659 37.0162 36.2932 21.1111 17.2246 21.1111H12.6667V16.8889C12.6667 12.6751 12.6751 12.6667 16.8372 12.6667C19.1309 12.6667 23.5241 13.2008 26.6011 13.8542ZM26.353 31.2265C37.3635 34.4956 46.4444 47.1548 46.4444 59.2325C46.4444 63.2879 46.4001 63.3333 42.37 63.3333H38.2956L37.6939 57.5088C36.5655 46.5743 29.4606 39.4377 18.5873 38.3156L12.6667 37.7044V33.63C12.6667 29.6126 12.7226 29.5556 16.6968 29.5556C18.9145 29.5556 23.2592 30.3071 26.353 31.2265ZM23.2222 52.7778C24.3833 53.9389 25.3333 55.8389 25.3333 57C25.3333 59.7191 21.7191 63.3333 19 63.3333C16.2809 63.3333 12.6667 59.7191 12.6667 57C12.6667 55.8389 13.6167 53.9389 14.7778 52.7778C15.9389 51.6167 17.8389 50.6667 19 50.6667C20.1611 50.6667 22.0611 51.6167 23.2222 52.7778Z" fill="${color}"/>
@@ -16,7 +16,7 @@ export const UpdateIcon = ({style, width, height, color = 'white'}) => {
 `;
   return <SvgFromXml xml={xml} width={width} height={height} style={style} />;
 };
-export const LogoutIcon = ({style, width, height}) => {
+export const LogoutIcon = ({ style, width, height }) => {
   const xml = `<svg width="77" height="75" viewBox="0 0 77 75" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M2.4873 2.30156L0 4.60219V37.5V70.3978L2.4873 72.6984L4.97359 75H32.4211H59.8685L62.3548 72.6984C64.7084 70.5216 64.8421 69.8156 64.8421 59.5734V48.75H60.7895H56.7368V58.125V67.5H32.4211H8.10526V37.5V7.5H32.4211H56.7368V16.875V26.25H60.7895H64.8421V15.4266C64.8421 5.18437 64.7084 4.47844 62.3548 2.30156L59.8685 0H32.4211H4.97359L2.4873 2.30156ZM34.9762 30.0816C29.9733 33.5784 25.7403 36.8269 25.5701 37.3003C25.3989 37.7738 29.6065 41.1844 34.9195 44.8791L44.5789 51.5981V46.4241V41.25H60.7895H77V37.5V33.75H60.8401H44.6803L44.3763 28.7362L44.0724 23.7234L34.9762 30.0816Z" fill="white"/>
 </svg>
@@ -24,7 +24,7 @@ export const LogoutIcon = ({style, width, height}) => {
 `;
   return <SvgFromXml xml={xml} width={width} height={height} style={style} />;
 };
-export const NotifcationIcon = ({style, width, height, color = 'white'}) => {
+export const NotifcationIcon = ({ style, width, height, color = 'white' }) => {
   const xml = `<svg width="64" height="78" viewBox="0 0 64 78" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M32 78C36.4 78 40 74.4 40 70H24C24 74.4 27.56 78 32 78ZM56 54V34C56 21.72 49.44 11.44 38 8.72V6C38 2.68 35.32 0 32 0C28.68 0 26 2.68 26 6V8.72C14.52 11.44 8 21.68 8 34V54L0 62V66H64V62L56 54Z" fill="${color}"/>
   </svg>
@@ -32,7 +32,7 @@ export const NotifcationIcon = ({style, width, height, color = 'white'}) => {
   return <SvgFromXml xml={xml} width={width} height={height} style={style} />;
 };
 
-export const ApplicationAddedIcon = ({style, width, height}) => {
+export const ApplicationAddedIcon = ({ style, width, height }) => {
   const xml = `<svg width="72" height="80" viewBox="0 0 72 80" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path fill-rule="evenodd" clip-rule="evenodd" d="M31.418 0.749278C30.274 1.24028 28.165 3.03428 26.733 4.73628C24.155 7.80128 24.035 7.83128 14.519 7.83128C5.649 7.83128 4.72 8.02028 2.455 10.2863L0 12.7403V43.8313V74.9223L2.455 77.3763L4.909 79.8313H36H67.091L69.545 77.3763L72 74.9223V43.8313V12.7403L69.545 10.2863C67.283 8.02328 66.346 7.83128 57.559 7.83128H48.027L44.763 4.26928C41.276 0.464277 35.582 -1.03772 31.418 0.749278ZM38.96 9.28328C40.515 11.1563 39.972 13.8203 37.75 15.2193C34.285 17.4013 30.383 12.4843 33.04 9.28328C34.584 7.42228 37.416 7.42228 38.96 9.28328ZM52.171 31.4863C53.177 32.3963 54 33.6413 54 34.2533C54 34.8653 49.048 40.3023 42.996 46.3353L31.992 57.3053L24.752 50.0663C18.772 44.0863 17.697 42.5343 18.573 41.1463C21.158 37.0483 22.75 37.1693 27.495 41.8263L32.035 46.2813L40.26 38.0563C44.784 33.5323 48.903 29.8313 49.414 29.8313C49.925 29.8313 51.165 30.5763 52.171 31.4863Z" fill="#418FA0"/>
   </svg>
@@ -40,15 +40,23 @@ export const ApplicationAddedIcon = ({style, width, height}) => {
   return <SvgFromXml xml={xml} width={width} height={height} style={style} />;
 };
 
-export const HomeIcon = ({style, width, height}) => {
+export const HomeIcon = ({ style, width, height }) => {
   const xml = `<svg width="46" height="39" viewBox="0 0 46 39" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M18.5 39V25.5H27.5V39H38.75V21H45.5L23 0.75L0.5 21H7.25V39H18.5Z" fill="#0170B1"/>
   </svg>  
   `;
   return <SvgFromXml xml={xml} width={width} height={height} style={style} />;
 };
+export const ChatIcon = ({ style, width, height }) => {
+  const xml = `<svg width="35" height="40" viewBox="0 0 35 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M1.07406 1.27844L0 2.55637V15.8496V29.1428L2.63331 26.0277L5.26619 22.913H13.8092C25.1873 22.913 24.5 23.6494 24.5 11.4565C24.5 2.70114 24.4825 2.53554 23.4259 1.27844L22.3523 0H12.25H2.14769L1.07406 1.27844ZM27.9291 16.1068C27.7694 22.2559 27.3897 23.414 24.7708 25.7449C23.702 26.6958 22.8178 26.8379 17.0323 26.9864L10.5 27.154V28.9626C10.5 30.189 10.8461 31.1836 11.5741 32.0496C12.642 33.3213 12.6936 33.3281 21.3509 33.3281H30.0545L32.5272 36.414L35 39.5V26.2354V12.9714L33.9259 11.6935C33.0483 10.6483 32.4161 10.415 30.4649 10.415H28.0774L27.9291 16.1068Z" fill="#016CAB"/>
+  </svg>
+   
+  `;
+  return <SvgFromXml xml={xml} width={width} height={height} style={style} />;
+};
 
-export const AppLogo = ({style, width, height}) => {
+export const AppLogo = ({ style, width, height }) => {
   const xml = `<svg width="144" height="144" viewBox="0 0 144 144" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <rect width="144" height="144" rx="30" fill="url(#pattern0)"/>
   <defs>
