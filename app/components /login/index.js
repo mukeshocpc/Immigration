@@ -45,7 +45,6 @@ class Login extends Component {
 
         }
         console.log('IsUserInfoValid', data, displayName, email);
-        return
         if (displayName && email) this.props.navigation.goBack();
         else this.setState({ user: data.user });
         // console.log(data)
