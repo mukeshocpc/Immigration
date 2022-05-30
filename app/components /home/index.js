@@ -21,7 +21,8 @@ import {
   NotifcationIcon,
 } from '@utils/icons';
 import auth from '@react-native-firebase/auth';
-
+import { onDeleteKey } from '@utils/utility';
+//
 class Home extends Component {
   state = { text: 'h', user: undefined };
 
@@ -48,7 +49,14 @@ class Home extends Component {
       'Alert',
       'Are you sure you want to logout?',
       [
-        { text: 'Yes', onPress: () => auth().signOut() },
+        {
+          text: 'Yes', onPress: () => {
+
+            onDeleteKey("contactId")
+            auth().signOut()
+
+          }
+        },
         {
           text: 'No',
           onPress: () => console.log('No button clicked'),
