@@ -9,9 +9,7 @@ import moment from 'moment';
 
 class MyApplications extends Component {
   state = {
-    deals: [{
-      name: "mukesh Jha"
-    }]
+    deals: []
   };
 
   componentDidMount() {
