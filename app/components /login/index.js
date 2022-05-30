@@ -60,24 +60,19 @@ class Login extends Component {
     try {
       await auth().currentUser.updateEmail(String(email));
       let user = await auth().currentUser;
-
-      // saveContact
-      // await auth().currentUser.updateProfile({
-      //   displayName: fname + ' ' + lastName, //+ ' ' + // contactId,
-      // });
       data.mobile = user._user.phoneNumber;
       console.log('response - ', user);
-      // console.log('user - ', user._user);
-      // console.log('phone - ', user._user.phoneNumber);
-      // console.log('uid - ', user._user.uid);
-      let response = await createContact(data);
-      console.log('create contact response - ', response);
-      let contactId = response.data.contact.id;
-      await auth().currentUser.updateProfile({
-        displayName: fname + ' ' + lastName + ' ' + contactId,
-      });
-      await saveData({ contactId }, 'contactId');
-
+      try {
+        let response = await createContact(data);
+        console.log('create contact response - ', response);
+        let contactId = response.data.contact.id;
+        await auth().currentUser.updateProfile({
+          displayName: fname + ' ' + lastName + ' ' + contactId,
+        });
+        await saveData({ contactId }, 'contactId');
+      } catch (error) {
+        console.log('response - ', "user already exist", error);
+      }
       this.props.navigation.goBack();
     } catch (error) {
       console.log(error);
