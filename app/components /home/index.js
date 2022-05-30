@@ -92,6 +92,21 @@ class Home extends Component {
               />
 
               <CardView
+                title="My Applications"
+                subTitle="Fill out details here"
+                color={'#206A88'}
+                onPress={() =>
+                  this.props.navigation.navigate(
+                    user ? 'MyApplications' : 'Login',
+                  )
+                }
+                icon={
+                  <UserIcon style={{marginLeft: 0}} width="85" height="85" />
+                }
+                backgroundColor={['#1e6886', '#6dbebe']}
+              />
+
+              <CardView
                 title="Latest Updates"
                 subTitle="Checkout here"
                 color={'#FF5A30'}

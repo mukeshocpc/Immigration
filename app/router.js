@@ -8,6 +8,7 @@ import NewApplication from '@screen/new_app';
 import Notification from '@screen/notification';
 import Updates from '@screen/updates';
 import ApplicationAdded from '@screen/application_added';
+import MyApplications from '@screen/get_apps';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,7 @@ export default class Navigation extends Component {
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="NewApplication" component={NewApplication} />
+          <Stack.Screen name="MyApplications" component={MyApplications} />
           <Stack.Screen name="Notification" component={Notification} />
           <Stack.Screen name="Updates" component={Updates} />
           <Stack.Screen name="ApplicationAdded" component={ApplicationAdded} />

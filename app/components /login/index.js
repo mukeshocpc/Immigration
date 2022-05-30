@@ -7,6 +7,8 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import OTPView from './otp';
 import InputPhone from './phone';
 import UserInfo from './userInfo';
+import {createContact} from '../service/Home';
+import {saveData} from '@utils/utility';
 
 class Login extends Component {
   state = {
@@ -53,12 +55,24 @@ class Login extends Component {
     try {
       await auth().currentUser.updateEmail(String(email));
       let user = await auth().currentUser;
-      // saveContact
-      await auth().currentUser.updateProfile({
-        displayName: fname + ' ' + lastName, //+ ' ' + // contactId,
-      });
 
-      console.log('_updateUserData', user);
+      // saveContact
+      // await auth().currentUser.updateProfile({
+      //   displayName: fname + ' ' + lastName, //+ ' ' + // contactId,
+      // });
+      data.mobile = user._user.phoneNumber;
+      console.log('response - ', user);
+      // console.log('user - ', user._user);
+      // console.log('phone - ', user._user.phoneNumber);
+      // console.log('uid - ', user._user.uid);
+      let response = await createContact(data);
+      console.log('create contact response - ', response);
+      let contactId = response.data.contact.id;
+      await auth().currentUser.updateProfile({
+        displayName: fname + ' ' + lastName + ' ' + contactId,
+      });
+      await saveData({contactId}, 'contactId');
+
       this.props.navigation.goBack();
     } catch (error) {
       console.log(error);

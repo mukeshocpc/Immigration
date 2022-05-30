@@ -36,15 +36,15 @@ class NewApplication extends Component {
   }
 
   handleIndexChange = index => {
-    if (index == 1 && this.state.step0 == false) {
-      alert('Please fill in all the personal detail');
-      return;
-    }
+    // if (index == 1 && this.state.step0 == false) {
+    //   alert('Please fill in all the personal detail');
+    //   return;
+    // }
 
-    if (index == 2 && this.state.step1 == false) {
-      alert('Please fill in all the general details');
-      return;
-    }
+    // if (index == 2 && this.state.step1 == false) {
+    //   alert('Please fill in all the general details');
+    //   return;
+    // }
     this.setState({
       selectedIndex: index,
     });
@@ -53,7 +53,7 @@ class NewApplication extends Component {
   onCreateApp = async () => {
     let data = await createApplication(this.state);
     if (data.status == 200) {
-      this.props.navigation.navigate('ApplicationAdded');
+      this.props.navigation.navigate('ApplicationAdded', {case: '100'});
     } else {
       alert('Something went wrong. Please try again later.');
     }

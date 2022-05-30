@@ -5,8 +5,6 @@ import {getData} from '../../utils/utility';
 import customAxios from './axios';
 
 const createApplication = async data => {
-  //sample
-  // console.log(payload, `/login/user`)
   let {
     fname,
     lname,
@@ -74,17 +72,19 @@ const createApplication = async data => {
 
   let token = await getData('fcmToken');
   let fcmToken = token.fcmToken;
+  let {contactId} = await getData('contactId');
 
   let payload = {
     deal: {
       name: fname + ' ' + lname,
+      contacts_added_list: [contactId],
       //   amount: 0,
       //   contacts_added_list: [22003424578],
       custom_field: customFieldDic,
     },
   };
 
-  console.log(payload);
+  console.log('create deal payload - ', payload);
 
   //   delete data.deal.custom_field.cf_date_of_birth;
   let response = await customAxios.post(`/crm/sales/api/deals/`, payload);
@@ -92,4 +92,48 @@ const createApplication = async data => {
   return response;
 };
 
-export {createApplication};
+const createContact = async data => {
+  //sample
+  // console.log(payload, `/login/user`)
+  let {fname, lastName, email, mobile} = data;
+
+  let payload = {
+    contact: {
+      first_name: fname,
+      last_name: lastName,
+      email: email,
+      mobile_number: mobile,
+    },
+  };
+
+  // let token = await getData('fcmToken');
+  // let fcmToken = token.fcmToken;
+
+  // let payload = {
+  //   deal: {
+  //     name: fname + ' ' + lname,
+  //     //   amount: 0,
+  //     //   contacts_added_list: [22003424578],
+  //     custom_field: customFieldDic,
+  //   },
+  // };
+
+  console.log(payload);
+
+  //   delete data.deal.custom_field.cf_date_of_birth;
+  let response = await customAxios.post(`/crm/sales/api/contacts/`, payload);
+  console.log('Response sales/api/contacts/ - ', response);
+  return response;
+};
+
+const getApplications = async () => {
+  let {contactId} = await getData('contactId');
+
+  let response = await customAxios.get(
+    `/crm/sales/api/contacts/${contactId}?include=deals`,
+  );
+  console.log('Response contact deals - ', response);
+  return response;
+};
+
+export {createApplication, createContact, getApplications};
