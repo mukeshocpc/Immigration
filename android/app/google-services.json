@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "339596927301",
+    "project_id": "immigration-app-794fa",
+    "storage_bucket": "immigration-app-794fa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:339596927301:android:0aad875c73c6ec66da1e2c",
+        "android_client_info": {
+          "package_name": "com.immigration_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "339596927301-jgp1naaiipgch63u332u1n94tmam1r4s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpeK_s8mmPgjQpMsri4TfRVGvmTMUmZvU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "339596927301-jgp1naaiipgch63u332u1n94tmam1r4s.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "339596927301-juonjjvqab7qesumtab18sql4aq1e3f2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "immigrationappbaharan",
+                "app_store_id": "1460485328"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
