@@ -18,6 +18,8 @@ const DATA = [
 ];
 
 class MyApplications extends Component {
+  state = {deals: []};
+
   componentDidMount() {
     this.getApplications();
   }
@@ -52,8 +54,8 @@ class MyApplications extends Component {
           marginRight: 5,
           width: '75%',
         }}>
-        <Text style={{fontWeight: '600'}}>{item.title}</Text>
-        <Text style={{fontSize: 12, paddingVertical: 5}}>{item.sub}</Text>
+        <Text style={{fontWeight: '600'}}>{item.name}</Text>
+        {/* <Text style={{fontSize: 12, paddingVertical: 5}}>{item.sub}</Text> */}
       </View>
     </View>
   );
@@ -61,6 +63,7 @@ class MyApplications extends Component {
   getApplications = async () => {
     try {
       let response = await getApplications();
+      this.setState({deals: response.data.deals});
       console.log('getApplications - ', response);
     } catch (error) {
       console.log('getApplications error - ', error);
@@ -68,6 +71,7 @@ class MyApplications extends Component {
   };
 
   render() {
+    let {deals} = this.state;
     return (
       <View style={styles.body}>
         <View
@@ -83,7 +87,7 @@ class MyApplications extends Component {
         </View>
 
         <FlatList
-          data={DATA}
+          data={deals}
           renderItem={this.renderItem}
           keyExtractor={item => item.id}
         />
