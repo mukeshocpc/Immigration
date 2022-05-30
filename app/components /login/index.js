@@ -38,8 +38,14 @@ class Login extends Component {
         console.log('confirmCode', code);
         let data = await confirm.confirm(String(code));
         let { displayName, email } = data.user;
-        console.log('IsUserInfoValid', data, displayName, email);
+        let array = displayName.split(" ")
+        if (array.length > 2) {
+          console.log('contactId', array[array.length - 1]);
+          await saveData({ contactId: array[array.length - 1] }, 'contactId');
 
+        }
+        console.log('IsUserInfoValid', data, displayName, email);
+        return
         if (displayName && email) this.props.navigation.goBack();
         else this.setState({ user: data.user });
         // console.log(data)
