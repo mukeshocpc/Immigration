@@ -11,9 +11,9 @@ import {
 
 export default UserInfo = (props) => {
     const [value, setValue] = useState("");
-    const [fname, setFirstName] = React.useState("Mukesh");
-    const [lastName, setLastName] = React.useState("Jha");
-    const [email, setEmail] = React.useState("mukeshjha313@gmail.com");
+    const [fname, setFirstName] = React.useState("");
+    const [lastName, setLastName] = React.useState("");
+    const [email, setEmail] = React.useState("");
     const phoneInput = useRef(null);
 
 
@@ -51,9 +51,9 @@ export default UserInfo = (props) => {
                 style={styles.submit}
                 onPress={() => {
                     // props.onPress({ fname, lastName, email })
-                    const checkValid = fname.length > 0 && lastName.length > 0 && email.length > 0;
+                    const checkValid = fname.trim().length > 0 && lastName.trim().length > 0 && email.trim().length > 0;
                     if (checkValid) {
-                        props.onPress({ fname, lastName, email })
+                        props.onPress({ fname: fname.trim(), lastName: lastName.trim(), email: email.trim() })
 
                     } else {
                         alert("Invalid User Info")
