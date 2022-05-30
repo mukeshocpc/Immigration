@@ -96,13 +96,13 @@ class MyApplications extends Component {
       <View style={styles.body}>
         <View
           style={{
-            height: '10%',
+            height: '2%',
             flexDirection: 'column',
             alignContent: 'center',
             justifyContent: 'space-around',
             alignItems: 'center',
           }}>
-          <Text style={{ fontWeight: '700', fontSize: 20 }}>My Applications</Text>
+
         </View>
 
         <FlatList
